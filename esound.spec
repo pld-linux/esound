@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_alsa		- without ALSA support
+# _without_alsa		- support OSS, not ALSA
 # _without_libwrap	- without hosts.{access,deny} support
 #
 Summary:	The Enlightened Sound Daemon
