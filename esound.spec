@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 
 make DESTDIR=$RPM_BUILD_ROOT install
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf README AUTHORS ChangeLog NEWS
 
@@ -89,13 +89,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/bin/esdrec
 %attr(755,root,root) /usr/bin/esdsample
 
-%attr(755,root,root) /usr/lib/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc {AUTHORS,ChangeLog,NEWS}.gz
 
-%attr(755,root,root) /usr/lib/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) /usr/bin/esd-config
 
 /usr/include/*
@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %changelog
 * Sat Apr 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
