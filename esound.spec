@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_bindir}/esd-config
 
-/usr/include/*
+%{_includedir}/*
 %{_datadir}/aclocal/*
 
 %files static
