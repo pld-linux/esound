@@ -31,8 +31,6 @@ BuildRequires:	pkgconfig
 Obsoletes:	libesound0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir	/etc
-
 %description
 The Enlightened Sound Daemon is a server process that allows multiple
 applications to share a single sound card.
