@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/bin/esd-config
 
 /usr/include/*
-/usr/share/aclocal/*
+%{_datadir}/aclocal/*
 
 %files static
 %defattr(644,root,root,755)
