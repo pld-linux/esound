@@ -13,18 +13,16 @@ Summary(pt_BR):	O servidor de som do Enlightenment
 Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
-Version:	0.2.31
-Release:	2
+Version:	0.2.32
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	5b8349f7dd58349e626e1701f2a420af
+# Source0-md5:	b2a5e71ec8220fea1c22cc042f5f6e63
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
-Requires:	esound-driver
-Provides:	libesd.so.0
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
@@ -32,6 +30,8 @@ BuildRequires:	automake
 BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
+Requires:	esound-driver
+Provides:	libesd.so.0
 Obsoletes:	libesound0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -142,6 +142,7 @@ usem o servidor de som EsounD.
 Summary:	EsounD OSS driver
 Summary(pl):	Sterownik OSS dla EsoundD
 Group:		Libraries
+Requires(post,postun):	/sbin/ldconfig
 Requires:	%{name} = %{epoch}:%{version}
 Provides:	esound-driver
 Conflicts:	esound-alsa
@@ -156,6 +157,7 @@ Sterownik OSS dla EsoundD.
 Summary:	EsounD ALSA driver
 Summary(pl):	Sterownik ALSA dla EsoundD
 Group:		Libraries
+Requires(post,postun):	/sbin/ldconfig
 Requires:	%{name} = %{epoch}:%{version}
 Provides:	esound-driver
 Conflicts:	esound-oss
@@ -177,7 +179,6 @@ rm -f missing acinclude.m4
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-
 %configure \
 	--enable-ipv6 \
 	--with%{!?with_libwrap:out}-libwrap \
@@ -202,6 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
+
 rm -f $RPM_BUILD_ROOT%{_libdir}/libesd.so.*.*
 install libesd-*.so.*.* $RPM_BUILD_ROOT%{_libdir}
 
