@@ -189,7 +189,8 @@ rm -f acinclude.m4
 %configure \
 	--enable-ipv6 \
 	--with%{!?with_libwrap:out}-libwrap \
-	--enable-alsa
+	--enable-alsa \
+	--enable-local-sound
 %{__make}
 cp -f .libs/libesd.so.%{version} libesd-alsa.so.%{version}
 %{__make} clean
@@ -198,7 +199,8 @@ cp -f .libs/libesd.so.%{version} libesd-alsa.so.%{version}
 %configure \
 	--enable-ipv6 \
 	--with%{!?with_libwrap:out}-libwrap \
-	--disable-alsa
+	--disable-alsa \
+	--enable-local-sound
 %{__make}
 cp -f .libs/libesd.so.%{version} libesd-oss.so.%{version}
 
