@@ -2,7 +2,7 @@ Summary:	The Enlightened Sound Daemon
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.12
-Release:	2
+Release:	3
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -11,6 +11,8 @@ URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define		_sysconfdir	/etc
 
 %description
 The Enlightened Sound Daemon is a server process that allows multiple
@@ -21,7 +23,7 @@ applications to share a single sound card.
 (dzielenie) z jednej karty d¼wiêkowej przez ró¿ne aplikacje. Przeznaczony 
 g³ównie dla Enlightenmenta.
 
-%package	devel
+%package devel
 Summary:	Libraries, includes, etc to develop EsounD applications
 Summary(pl):	Biblioteki, pliki nag³ówkowe oraz dokumentacja
 Group:		Development/Libraries
@@ -35,7 +37,7 @@ Libraries, include files, etc you can use to develop EsounD applications.
 Biblioteki, pliki nag³ówkowe oraz dokumentacja - czyli wszystko czego 
 potrzebujesz do tworzenia aplikacji pod EsounD.
 
-%package	static
+%package static
 Summary:	EsounD static library
 Summary(pl):	Biblioteka statyczna esound
 Group:		Development/Libraries
@@ -52,10 +54,9 @@ Biblioteka statyczna esound.
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=%{_prefix} \
-	--sysconfdir=/etc
+LDFLAGS="-s"; export LDFLAGS
+%configure
+
 make
 
 %install
@@ -63,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 make DESTDIR=$RPM_BUILD_ROOT install
 
-strip $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf README AUTHORS ChangeLog NEWS
 
@@ -96,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {AUTHORS,ChangeLog,NEWS}.gz
 
 %attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
 %attr(755,root,root) %{_bindir}/esd-config
 
 %{_includedir}/*
