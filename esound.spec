@@ -5,10 +5,10 @@ Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.18
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Daemons
 Group(pl):	Serwery
-Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	libwrap-devel
 BuildRequires:	audiofile-devel
@@ -21,8 +21,8 @@ The Enlightened Sound Daemon is a server process that allows multiple
 applications to share a single sound card.
 
 %description -l es
-El demonio de sonido de Enlightment es un proceso servidor que permite a más
-de una aplicación de usar la tarjeta de sonido al mismo tiempo
+El demonio de sonido de Enlightment es un proceso servidor que permite
+a más de una aplicación de usar la tarjeta de sonido al mismo tiempo
 
 %description -l fr
 Le démon audio de Enlightment est un processus serveur qui permets à
@@ -38,12 +38,14 @@ Summary(es):	Bibliotecas, includes, etc para desarrollar programas para EsounD
 Summary(fr):	Bibliothèques, includes, etc pour programmer pour EsounD
 Summary(pl):	Biblioteki, pliki nag³ówkowe oraz dokumentacja
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 Requires:	audiofile-devel
 
 %description devel
-Libraries, include files, etc you can use to develop EsounD applications.
+Libraries, include files, etc you can use to develop EsounD
+applications.
 
 %description devel -l es
 Bibliotecas, archivos *.h, etc necesarios para escribir programas con
@@ -54,13 +56,14 @@ Bibliothèques, fichiers d'en-têtes, etc. necessaires pour écrire des
 applications avec support EsounD
 
 %description -l pl devel
-Biblioteki, pliki nag³ówkowe oraz dokumentacja - czyli wszystko czego 
+Biblioteki, pliki nag³ówkowe oraz dokumentacja - czyli wszystko czego
 potrzebujesz do tworzenia aplikacji pod EsounD.
 
 %package static
 Summary:	EsounD static library
 Summary(pl):	Biblioteka statyczna esound
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
@@ -103,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.gz
 
-%config(noreplace) %verify(not md5 mtime size) /etc/esd.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/esd.conf
 %attr(755,root,root) %{_bindir}/esd
 %attr(755,root,root) %{_bindir}/esdcat
 %attr(755,root,root) %{_bindir}/esdctl
