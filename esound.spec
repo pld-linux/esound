@@ -185,7 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS
 %attr(755,root,root) %{_bindir}/esd-config
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_includedir}/*
 %{_aclocaldir}/*
 %{_pkgconfigdir}/esound*
