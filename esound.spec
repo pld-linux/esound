@@ -139,8 +139,8 @@ usem o servidor de som EsounD.
 rm -f missing acinclude.m4
 libtoolize --copy --force
 aclocal || ( echo 'AC_DEFUN([AM_PATH_ALSA],[])' > acinclude.m4 && aclocal )
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--disable-alsa \
 	--with%{?_without_libwrap:out}-libwrap
