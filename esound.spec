@@ -138,7 +138,7 @@ usem o servidor de som EsounD.
 %build
 rm -f missing acinclude.m4
 %{__libtoolize}
-aclocal || ( echo 'AC_DEFUN([AM_PATH_ALSA],[])' > acinclude.m4 && aclocal )
+%{__aclocal} || ( echo 'AC_DEFUN([AM_PATH_ALSA],[])' > acinclude.m4 && aclocal )
 %{__autoconf}
 %{__automake}
 %configure \
