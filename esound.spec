@@ -3,6 +3,8 @@
 %bcond_without alsa 		# support OSS, not ALSA
 %bcond_without libwrap 		# without hosts.{access,deny} support
 
+%define _noautoprov libesd.so.0
+
 Summary:	The Enlightened Sound Daemon
 Summary(es):	El servidor de sonido del Enlightenment
 Summary(fr):	DИmon audio de Enlightment
@@ -12,7 +14,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.31
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -21,6 +23,8 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.2/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
+Requires:	esound-driver
+Provides:	libesd.so.0
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
@@ -134,6 +138,34 @@ usem o servidor de som EsounD.
 Цей пакет м╕стить статичн╕ б╕бл╕отеки, необх╕дн╕ для розробки
 прикладних програм, що використовують esound.
 
+%package oss
+Summary:	EsounD OSS driver
+Summary(pl):	Sterownik OSS dla EsoundD
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}
+Provides:	esound-driver
+Conflicts:	esound-alsa
+
+%description oss
+EsounD OSS driver.
+
+%description oss -l pl
+Sterownik OSS dla EsoundD.
+
+%package alsa
+Summary:	EsounD ALSA driver
+Summary(pl):	Sterownik ALSA dla EsoundD
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}
+Provides:	esound-driver
+Conflicts:	esound-oss
+
+%description alsa
+EsounD ALSA driver.
+
+%description alsa -l pl
+Sterownik ALSA dla EsoundD.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -145,16 +177,23 @@ rm -f missing acinclude.m4
 %{__aclocal}
 %{__autoconf}
 %{__automake}
+
 %configure \
 	--enable-ipv6 \
 	--with%{!?with_libwrap:out}-libwrap \
-%if %{with alsa}
-	--enable-alsa
-%else
 	--disable-alsa
-%endif
-
 %{__make}
+cp -f .libs/libesd.so.%{version} libesd-oss.so.%{version}
+
+%if %{with alsa}
+%{__make} clean
+%configure \
+	--enable-ipv6 \
+	--with%{!?with_libwrap:out}-libwrap \
+	--enable-alsa
+%{__make}
+cp -f .libs/libesd.so.%{version} libesd-alsa.so.%{version}
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -163,12 +202,31 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libesd.so.*.*
+install libesd-*.so.*.* $RPM_BUILD_ROOT%{_libdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%post oss
+ln -fs libesd-oss.so.%{version} %{_libdir}/libesd.so.%{version}
+/sbin/ldconfig
+
+%postun oss
+rm -f %{_libdir}/libesd.so.%{version}
+/sbin/ldconfig
+
+%post alsa
+ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
+/sbin/ldconfig
+
+%postun alsa
+rm -f %{_libdir}/libesd.so.%{version}
+/sbin/ldconfig
+
 
 %files
 %defattr(644,root,root,755)
@@ -185,7 +243,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/esdplay
 %attr(755,root,root) %{_bindir}/esdrec
 %attr(755,root,root) %{_bindir}/esdsample
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libesddsp.so.*.*
 %{_mandir}/man1/esd.1*
 %{_mandir}/man1/esd[a-z]*.1*
 
@@ -203,3 +261,13 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files oss
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libesd-oss.so.%{version}
+
+%if %{with alsa}
+%files alsa
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libesd-alsa.so.%{version}
+%endif
