@@ -57,7 +57,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 
 make DESTDIR=$RPM_BUILD_ROOT install
-strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
