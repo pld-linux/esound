@@ -13,7 +13,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.27
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -169,7 +169,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz
+%doc README
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/esd.conf
 %attr(755,root,root) %{_bindir}/esd
@@ -187,7 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS}.gz
+%doc AUTHORS ChangeLog NEWS
 
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
