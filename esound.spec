@@ -2,9 +2,7 @@
 # Conditional build:
 %bcond_without alsa 		# support OSS, not ALSA
 %bcond_without libwrap 		# without hosts.{access,deny} support
-
-%define _noautoprov libesd.so.0
-
+#
 Summary:	The Enlightened Sound Daemon
 Summary(es):	El servidor de sonido del Enlightenment
 Summary(fr):	Démon audio de Enlightment
@@ -34,6 +32,8 @@ Requires:	esound-driver
 Provides:	libesd.so.0
 Obsoletes:	libesound0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoprov	libesd.so.0
 
 %description
 The Enlightened Sound Daemon is a server process that allows multiple
@@ -142,7 +142,8 @@ usem o servidor de som EsounD.
 Summary:	EsounD OSS driver
 Summary(pl):	Sterownik OSS dla EsoundD
 Group:		Libraries
-Requires(post,postun):	/sbin/ldconfig
+Requires(post):	/sbin/ldconfig
+Requires(post):	fileutils
 Requires:	%{name} = %{epoch}:%{version}
 Provides:	esound-driver
 Conflicts:	esound-alsa
@@ -157,7 +158,8 @@ Sterownik OSS dla EsoundD.
 Summary:	EsounD ALSA driver
 Summary(pl):	Sterownik ALSA dla EsoundD
 Group:		Libraries
-Requires(post,postun):	/sbin/ldconfig
+Requires(post):	/sbin/ldconfig
+Requires(post):	fileutils
 Requires:	%{name} = %{epoch}:%{version}
 Provides:	esound-driver
 Conflicts:	esound-oss
@@ -179,22 +181,23 @@ rm -f missing acinclude.m4
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure \
-	--enable-ipv6 \
-	--with%{!?with_libwrap:out}-libwrap \
-	--disable-alsa
-%{__make}
-cp -f .libs/libesd.so.%{version} libesd-oss.so.%{version}
 
 %if %{with alsa}
-%{__make} clean
 %configure \
 	--enable-ipv6 \
 	--with%{!?with_libwrap:out}-libwrap \
 	--enable-alsa
 %{__make}
 cp -f .libs/libesd.so.%{version} libesd-alsa.so.%{version}
+%{__make} clean
 %endif
+
+%configure \
+	--enable-ipv6 \
+	--with%{!?with_libwrap:out}-libwrap \
+	--disable-alsa
+%{__make}
+cp -f .libs/libesd.so.%{version} libesd-oss.so.%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -204,8 +207,8 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/libesd.so.*.*
 install libesd-*.so.*.* $RPM_BUILD_ROOT%{_libdir}
+> $RPM_BUILD_ROOT%{_libdir}/libesd.so.%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -217,23 +220,17 @@ rm -rf $RPM_BUILD_ROOT
 ln -fs libesd-oss.so.%{version} %{_libdir}/libesd.so.%{version}
 /sbin/ldconfig
 
-%postun oss
-rm -f %{_libdir}/libesd.so.%{version}
-/sbin/ldconfig
+%postun oss -p /sbin/ldconfig
 
 %post alsa
 ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
 /sbin/ldconfig
 
-%postun alsa
-rm -f %{_libdir}/libesd.so.%{version}
-/sbin/ldconfig
-
+%postun alsa -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc README TIPS docs/html
-
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/esd.conf
 %attr(755,root,root) %{_bindir}/esd
 %attr(755,root,root) %{_bindir}/esdcat
@@ -246,6 +243,7 @@ rm -f %{_libdir}/libesd.so.%{version}
 %attr(755,root,root) %{_bindir}/esdrec
 %attr(755,root,root) %{_bindir}/esdsample
 %attr(755,root,root) %{_libdir}/libesddsp.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libesd.so.%{version}
 %{_mandir}/man1/esd.1*
 %{_mandir}/man1/esd[a-z]*.1*
 
