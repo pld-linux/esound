@@ -1,5 +1,3 @@
-# TODO:
-# add manuals (do proper subpackages)
 #
 # Conditional build:
 # _without_libwrap	- without hosts.{access,deny} support
@@ -13,7 +11,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.27
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -141,7 +139,7 @@ usem o servidor de som EsounD.
 
 %build
 rm -f missing acinclude.m4
-libtoolize --copy --force
+%{__libtoolize}
 aclocal || ( echo 'AC_DEFUN([AM_PATH_ALSA],[])' > acinclude.m4 && aclocal )
 %{__autoconf}
 %{__automake}
@@ -158,8 +156,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
-
-gzip -9nf README AUTHORS ChangeLog NEWS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -182,20 +178,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/esdplay
 %attr(755,root,root) %{_bindir}/esdrec
 %attr(755,root,root) %{_bindir}/esdsample
-
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_mandir}/man1/esd.1*
+%{_mandir}/man1/esd[a-z]*.1*
 
 %files devel
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS
-
+%attr(755,root,root) %{_bindir}/esd-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_bindir}/esd-config
-
 %{_includedir}/*
 %{_aclocaldir}/*
 %{_pkgconfigdir}/esound*
+%{_mandir}/man1/esd-config.1*
 
 %files static
 %defattr(644,root,root,755)
