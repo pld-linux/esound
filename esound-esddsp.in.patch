@@ -1,6 +1,6 @@
---- esound-0.2.22/esddsp.in~	Wed Aug 29 20:45:25 2001
-+++ esound-0.2.22/esddsp.in	Wed Aug 29 21:03:22 2001
-@@ -11,67 +11,72 @@
+--- esound-0.2.23/esddsp.in.orig	Mon Feb  1 15:38:01 1999
++++ esound-0.2.23/esddsp.in	Tue Sep 11 01:29:51 2001
+@@ -11,89 +11,89 @@
      case "$1" in
  
  	-h|--help)
@@ -120,7 +120,12 @@
      esac
  done
  
-@@ -82,19 +87,15 @@
+ # default name to player if not specified
+ if test "$set_name" = 0; then
+-    export ESDDSP_NAME=$1
++	ESDDSP_NAME=$1
++	export ESDDSP_NAME
+ fi
  
  # echo options if verbose specified
  if test "$verbose" = 1; then
@@ -137,11 +142,9 @@
 -exec_prefix=@exec_prefix@
 -libdir=@libdir@
 -
- # Don't try to connect to esd if it isn't running
- #if [ ! "x`pidof esd`" = "x" ]; then
--   export LD_PRELOAD="${libdir}/libesddsp.so.0:${libdir}/libesd.so.0"
-+	LD_PRELOAD="@libdir@/libesddsp.so.0:@libdir@/libesd.so.0"
-+	export LD_PRELOAD
- #fi
+-export LD_PRELOAD_PATH=${libdir}
+-export LD_PRELOAD='libesddsp.so libesd.so'
++export LD_PRELOAD="${libdir}/libesddsp.so.0 ${libdir}/libesd.so.0"
  
  # invoke the program with the args given
+ exec "$@"
