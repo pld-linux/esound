@@ -8,7 +8,7 @@ Release:	1
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
-Source:		ftp://ftp.gnome.org/pub/GNOME/sources/esound/%{name}-%{version}.tar.gz
+Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
 Patch:		esound-alsa.patch
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	alsa-devel
