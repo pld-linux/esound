@@ -1,10 +1,14 @@
+#
+# Conditional build:
+# _without_libwrap	- without hosts.{access,deny} support
+#
 Summary:	The Enlightened Sound Daemon
 Summary(es):	Demonio de sonido de Enlightment
 Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.23
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -13,7 +17,7 @@ Group(pl):	Serwery
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
 Patch0:		%{name}-esddsp.in.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
-BuildRequires:	libwrap-devel
+%{!?_without_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -101,7 +105,7 @@ autoconf
 automake -a -c
 %configure \
 	--disable-alsa \
-	--with-libwrap
+	--with%{?_without_libwrap:out}-libwrap
 
 %{__make}
 
