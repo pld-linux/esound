@@ -1,0 +1,10 @@
+--- esound-0.2.27/Makefile.am.wiget	Tue Jun 11 19:08:57 2002
++++ esound-0.2.27/Makefile.am	Tue Jun 11 19:09:39 2002
+@@ -80,7 +80,6 @@
+ 	proto.c		\
+ 	samples.c	\
+ 	$(getopt_src)   \
+-	util.c		\
+ 	esd-server.h
+ 
+ esdcat_SOURCES = \
