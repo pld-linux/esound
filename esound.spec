@@ -1,8 +1,8 @@
 Summary:	The Enlightened Sound Daemon
 Summary(pl):	O¶wiecony Demon D¼wiêku ;)
 Name:		esound
-Version:	0.2.8
-Release:	2
+Version:	0.2.12
+Release:	1
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -52,7 +52,8 @@ Biblioteka statyczna esound.
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure \
-	--prefix=/usr
+	--prefix=/usr \
+	--sysconfdir=/etc
 make
 
 %install
@@ -74,6 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.gz
 
+%config(noreplace) %verify(not md5 mtime size) /etc/esd.conf
 %attr(755,root,root) /usr/bin/esd
 %attr(755,root,root) /usr/bin/esdcat
 %attr(755,root,root) /usr/bin/esdctl
@@ -81,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/bin/esdfilt
 %attr(755,root,root) /usr/bin/esdloop
 %attr(755,root,root) /usr/bin/esdmon
+%attr(755,root,root) /usr/bin/esdplay
 %attr(755,root,root) /usr/bin/esdrec
 %attr(755,root,root) /usr/bin/esdsample
 
@@ -101,6 +104,11 @@ rm -rf $RPM_BUILD_ROOT
 /usr/lib/lib*.a
 
 %changelog
+* Tue Apr 13 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.2.12-1]
+- added /usr/bin/esdplay to main,
+- added /etc/esd.conf.
+
 * Wed Mar 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.2.8-2]
 - removed "Requires: libaudiofile".
