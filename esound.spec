@@ -13,7 +13,7 @@ Patch0:		esound-alsa.patch
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	libwrap-devel
 BuildRequires:	audiofile-devel
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
 
