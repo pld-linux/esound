@@ -71,7 +71,7 @@ Summary(pt_BR):	Bibliotecas, arquivos de inclusЦo, etc para desenvolver aplicaГУ
 Summary(ru):	Библиотеки разработки для esound
 Summary(uk):	Б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 %{!?_without_alsa:Requires:	alsa-lib-devel}
 Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
@@ -112,7 +112,7 @@ Summary(pt_BR):	Bibliotecas estАticas para desenvolver aplicaГУes EsounD
 Summary(ru):	Статические библиотеки разработки для esound
 Summary(uk):	Статичн╕ б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description static
 EsounD static library.
