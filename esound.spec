@@ -3,10 +3,11 @@ Summary(es):	Demonio de sonido de Enlightment
 Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
-Version:	0.2.19
+Version:	0.2.20
 Release:	1
 License:	GPL
 Group:		Daemons
+Group(de):	Server
 Group(pl):	Serwery
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
@@ -38,6 +39,7 @@ Summary(es):	Bibliotecas, includes, etc para desarrollar programas para EsounD
 Summary(fr):	Bibliothèques, includes, etc pour programmer pour EsounD
 Summary(pl):	Biblioteki, pliki nag³ówkowe oraz dokumentacja
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -63,6 +65,7 @@ potrzebujesz do tworzenia aplikacji pod EsounD.
 Summary:	EsounD static library
 Summary(pl):	Biblioteka statyczna esound
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -78,7 +81,6 @@ Biblioteka statyczna esound.
 
 %build
 libtoolize --copy --force
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--disable-alsa \
 	--with-libwrap
@@ -91,8 +93,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
-
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf README AUTHORS ChangeLog NEWS
 
