@@ -1,8 +1,8 @@
 #
 # Conditional build:
-# _without_alsa		- support OSS, not ALSA
-# _without_libwrap	- without hosts.{access,deny} support
-#
+%bcond_without alsa 		# support OSS, not ALSA
+%bcond_without libwrap 		# without hosts.{access,deny} support
+
 Summary:	The Enlightened Sound Daemon
 Summary(es):	El servidor de sonido del Enlightenment
 Summary(fr):	DИmon audio de Enlightment
@@ -21,12 +21,12 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.2/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
-%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
+%{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-%{!?_without_libwrap:BuildRequires:	libwrap-devel}
+%{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
 Obsoletes:	libesound0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -70,7 +70,7 @@ Summary(ru):	Библиотеки разработки для esound
 Summary(uk):	Б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}
-%{!?_without_alsa:Requires:	alsa-lib-devel}
+%{?with_alsa:Requires:	alsa-lib-devel}
 Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
 
@@ -147,8 +147,12 @@ rm -f missing acinclude.m4
 %{__automake}
 %configure \
 	--enable-ipv6 \
-	--with%{?_without_libwrap:out}-libwrap \
-	%{?_without_alsa:--disable-alsa}
+	--with%{!?with_libwrap:out}-libwrap \
+%if %{with alsa}
+	--enable-alsa
+%else
+	--disable-alsa
+%endif
 
 %{__make}
 
