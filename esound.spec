@@ -3,8 +3,8 @@ Summary(es):	Demonio de sonido de Enlightment
 Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
-Version:	0.2.20
-Release:	2
+Version:	0.2.22
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
