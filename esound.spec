@@ -15,6 +15,9 @@ Patch0:		%{name}-esddsp.in.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	libwrap-devel
 BuildRequires:	audiofile-devel >= 0.2.0
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
@@ -63,7 +66,7 @@ soporte para EsounD.
 Bibliothèques, fichiers d'en-têtes, etc. necessaires pour écrire des
 applications avec support EsounD
 
-%description -l pl devel
+%description devel -l pl
 Biblioteki, pliki nag³ówkowe oraz dokumentacja - czyli wszystko czego
 potrzebujesz do tworzenia aplikacji pod EsounD.
 
@@ -83,7 +86,7 @@ Requires:	%{name} = %{version}
 %description static
 EsounD static library.
 
-%description -l pl static
+%description static -l pl
 Biblioteka statyczna esound.
 
 %prep
@@ -111,11 +114,11 @@ rm -rf $RPM_BUILD_ROOT
 
 gzip -9nf README AUTHORS ChangeLog NEWS
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
