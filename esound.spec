@@ -1,4 +1,6 @@
 Summary:	The Enlightened Sound Daemon
+Summary(es):	Demonio de sonido de Enlightment
+Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.12
@@ -19,6 +21,14 @@ BuildRoot:	/tmp/%{name}-%{version}-root
 The Enlightened Sound Daemon is a server process that allows multiple
 applications to share a single sound card.
 
+%description -l es
+El demonio de sonido de Enlightment es un proceso servidor que permite a más
+de una aplicación de usar la tarjeta de sonido al mismo tiempo
+
+%description -l fr
+Le démon audio de Enlightment est un processus serveur qui permets à
+plusieures applications d'utilsier la carte son à la fois.
+
 %description -l pl
 "O¶wiecony demon d¼wiêku" jest serwerem, który umo¿liwia korzystanie
 (dzielenie) z jednej karty d¼wiêkowej przez ró¿ne aplikacje. Przeznaczony 
@@ -26,6 +36,8 @@ g³ównie dla Enlightenmenta.
 
 %package devel
 Summary:	Libraries, includes, etc to develop EsounD applications
+Summary(es):	Bibliotecas, includes, etc para desarrollar programas para EsounD
+Summary(fr):	Bibliothèques, includes, etc pour programmer pour EsounD
 Summary(pl):	Biblioteki, pliki nag³ówkowe oraz dokumentacja
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
@@ -33,6 +45,14 @@ Requires:	%{name} = %{version}
 
 %description devel
 Libraries, include files, etc you can use to develop EsounD applications.
+
+%description devel -l es
+Bibliotecas, archivos *.h, etc necesarios para escribir programas con
+soporte para EsounD.
+
+%description devel -l fr
+Bibliothèques, fichiers d'en-têtes, etc. necessaires pour écrire des
+applications avec support EsounD
 
 %description -l pl devel
 Biblioteki, pliki nag³ówkowe oraz dokumentacja - czyli wszystko czego 
