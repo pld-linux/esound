@@ -3,13 +3,12 @@ Summary(es):	Demonio de sonido de Enlightment
 Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
-Version:	0.2.17
-Release:	3
+Version:	0.2.18
+Release:	1
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
 Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
-Patch0:		esound-alsa.patch
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	libwrap-devel
 BuildRequires:	audiofile-devel
@@ -73,7 +72,6 @@ Biblioteka statyczna esound.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 libtoolize --copy --force
@@ -87,7 +85,9 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make DESTDIR=$RPM_BUILD_ROOT install
+make install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	m4datadir=%{_aclocaldir}
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
@@ -126,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/esd-config
 
 %{_includedir}/*
-%{_datadir}/aclocal/*
+%{_aclocaldir}/*
 
 %files static
 %defattr(644,root,root,755)
