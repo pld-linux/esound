@@ -100,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 /usr/share/aclocal/*
 
 %files static
-%attr(644,root,root,755)
+%defattr(644,root,root,755)
 /usr/lib/lib*.a
 
 %changelog
