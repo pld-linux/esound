@@ -1,15 +1,15 @@
 Summary:     The Enlightened Sound Daemon
 Summary(pl): O¶wiecony Demon D¼wiêku ;)
 Name:        esound
-Version:     0.2.4
-Release:     4
+Version:     0.2.6
+Release:     1
 Copyright:   GPL
 Group:       Daemons
-Source:      ftp://ftp.enlightenment.org/pub/enlightenment/enlightenment/%{name}-%{version}.tar.gz
+Source:      ftp://ftp.enlightenment.org/pub/enlightenment/%{name}-%{version}.tar.gz
 URL:         http://pw1.netcom.com/~ericmit/EsounD.html
-BuildRoot:   /tmp/%{name}-%{version}-%{release}-root
+BuildRoot:   /tmp/%{name}-%{version}-root
 
-%description 
+%description
 The Enlightened Sound Daemon is a server process that allows multiple
 applications to share a single sound card.
 
@@ -35,7 +35,7 @@ potrzebujesz do tworzenia aplikacji pod EsounD.
 Summary:     EsounD static library
 Summary(pl): Biblioteka statyczna esound
 Group:       Libraries
-Requires:    %{name}-devel = %{version}
+Requires:    %{name} = %{version}
 
 %description static
 EsounD static library.
@@ -44,7 +44,7 @@ EsounD static library.
 Biblioteka statyczna esound.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" ./configure \
@@ -55,7 +55,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 
 make DESTDIR=$RPM_BUILD_ROOT install
-strip $RPM_BUILD_ROOT/usr/X11R6/{bin/*,lib/lib*.so.*.*}
+strip $RPM_BUILD_ROOT/usr/X11R6/{bin/*,lib/lib*.so.*.*} ||
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -64,25 +64,39 @@ strip $RPM_BUILD_ROOT/usr/X11R6/{bin/*,lib/lib*.so.*.*}
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755, root, root) /usr/X11R6/bin/*
+%defattr(644, root, root, 755)
+%doc README 
+%attr(755, root, root) /usr/X11R6/bin/esd
+%attr(755, root, root) /usr/X11R6/bin/esdcat
+%attr(755, root, root) /usr/X11R6/bin/esdctl
+%attr(755, root, root) /usr/X11R6/bin/esddsp
+%attr(755, root, root) /usr/X11R6/bin/esdfilt
+%attr(755, root, root) /usr/X11R6/bin/esdloop
+%attr(755, root, root) /usr/X11R6/bin/esdmon
+%attr(755, root, root) /usr/X11R6/bin/esdrec
+%attr(755, root, root) /usr/X11R6/bin/esdsample
 %attr(755, root, root) /usr/X11R6/lib/lib*.so.*.*
 
 %files devel
+%doc AUTHORS ChangeLog NEWS
 %defattr(644, root, root, 755)
-%doc AUTHORS ChangeLog EsounD.html NEWS README 
 %attr(755, root, root) /usr/X11R6/lib/lib*.so
+%attr(755, root, root) /usr/X11R6/bin/esd-config
 /usr/X11R6/include/*
 
 %files static
-%attr(644, root, root) /usr/X11R6/lib/lib*.a
+%attr(644, root, root) /usr/X11R6/lib/*.a
 
 %changelog
-* Mon Oct 26 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.2.4-4]
-- corrected base Source URL,
+* Mon Nov  2 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.2.6-1]
+- added -n %%{name} %setup parameter,
+- added ignoring errors on striping binaries,
 - added striping shared libraries,
-- all %doc moved to devel,
-- /sbin/ldconfig in %post{un} is now runed as -p parameter.
+- removed packing lib*.so.* sym links,
+- esd-config moved to devel,
+- some %doc moved to devel,
+- /sbin/ldconfig is now runed as -p parameter in %post{un}.
 
 * Sun Oct 04 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.2.4-3]
