@@ -12,7 +12,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.32
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -21,7 +21,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.2/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 Patch2:		%{name}-am18.patch
-%{?with_alsa:Patch3:	%{name}-alsa-pcm-newapi.patch }
+Patch3:		%{name}-alsa-pcm-newapi.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 1.0.0-pre1 }
 BuildRequires:	audiofile-devel >= 0.2.0
@@ -146,8 +146,8 @@ Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
 Requires:	%{name} = %{epoch}:%{version}
-Provides:	esound-driver
-Conflicts:	esound-alsa
+Obsoletes:	%{name}-alsa
+Provides:	%{name}-driver
 
 %description oss
 EsounD OSS driver.
@@ -162,8 +162,9 @@ Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
 Requires:	%{name} = %{epoch}:%{version}
-Provides:	esound-driver
-Conflicts:	esound-oss
+Obsoletes:	%{name}-oss
+Provides:	%{name}-driver
+
 
 %description alsa
 EsounD ALSA driver.
