@@ -14,7 +14,7 @@ License:	GPL
 Group:		Daemons
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
 Patch0:		%{name}-esddsp.in.patch
-Patch1:		http://webpages.charter.net/tprado/esound/files/esound-0.2.23-ztp20011218_0.patch.gz
+Patch1:		http://webpages.charter.net/tprado/esound/files/%{name}-0.2.23-ztp20011218_0.patch.gz
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
