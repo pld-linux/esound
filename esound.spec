@@ -11,13 +11,13 @@ Summary(pt_BR):	O servidor de som do Enlightenment
 Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
-Version:	0.2.29
-Release:	3
+Version:	0.2.30
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/esound/0.2/%{name}-%{version}.tar.gz
-# Source0-md5: 657c998c1a6a6648811de447abcfdab0
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	1d384836b74849da9e11eeff61027665
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
@@ -28,8 +28,8 @@ BuildRequires:	automake
 BuildRequires:	libtool
 %{!?_without_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libesound0
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
 
@@ -148,6 +148,7 @@ rm -f missing acinclude.m4
 %{__autoconf}
 %{__automake}
 %configure \
+	--enable-ipv6 \
 	--with%{?_without_libwrap:out}-libwrap \
 	%{?_without_alsa:--disable-alsa}
 
@@ -169,7 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc README TIPS docs/html
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/esd.conf
 %attr(755,root,root) %{_bindir}/esd
@@ -188,7 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS
+%doc AUTHORS ChangeLog NEWS TODO
 %attr(755,root,root) %{_bindir}/esd-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
