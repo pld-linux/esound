@@ -78,16 +78,16 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.gz
 
 %config(noreplace) %verify(not md5 mtime size) /etc/esd.conf
-%attr(755,root,root) /usr/bin/esd
-%attr(755,root,root) /usr/bin/esdcat
-%attr(755,root,root) /usr/bin/esdctl
-%attr(755,root,root) /usr/bin/esddsp
-%attr(755,root,root) /usr/bin/esdfilt
-%attr(755,root,root) /usr/bin/esdloop
-%attr(755,root,root) /usr/bin/esdmon
-%attr(755,root,root) /usr/bin/esdplay
-%attr(755,root,root) /usr/bin/esdrec
-%attr(755,root,root) /usr/bin/esdsample
+%attr(755,root,root) %{_bindir}/esd
+%attr(755,root,root) %{_bindir}/esdcat
+%attr(755,root,root) %{_bindir}/esdctl
+%attr(755,root,root) %{_bindir}/esddsp
+%attr(755,root,root) %{_bindir}/esdfilt
+%attr(755,root,root) %{_bindir}/esdloop
+%attr(755,root,root) %{_bindir}/esdmon
+%attr(755,root,root) %{_bindir}/esdplay
+%attr(755,root,root) %{_bindir}/esdrec
+%attr(755,root,root) %{_bindir}/esdsample
 
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {AUTHORS,ChangeLog,NEWS}.gz
 
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) /usr/bin/esd-config
+%attr(755,root,root) %{_bindir}/esd-config
 
 /usr/include/*
 %{_datadir}/aclocal/*
@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 * Sat Apr 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.2.12-1]
 - added BuildPrereq: for alsa-lib-devel, audiofile-devel,
-- added /usr/bin/esdplay to main,
+- added %{_bindir}/esdplay to main,
 - added /etc/esd.conf,
 - recompiles on new rpm.
 
