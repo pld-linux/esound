@@ -8,8 +8,8 @@ Group:		Daemons
 Group(pl):	Serwery
 Source:		ftp://ftp.gnome.org/pub/NOME/sources/%{name}/%{name}-%{version}.tar.gz
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
-BuildPrereq:	alsa-lib-devel
-BuildPrereq:	audiofile-devel
+BuildRequires:	alsa-lib-devel
+BuildRequires:	audiofile-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
