@@ -62,7 +62,7 @@ make DESTDIR=$RPM_BUILD_ROOT install
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
-bzip2 -9 README AUTHORS ChangeLog NEWS
+gzip -9nf README AUTHORS ChangeLog NEWS
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -72,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.bz2
+%doc README.gz
 
 %attr(755,root,root) /usr/bin/esd
 %attr(755,root,root) /usr/bin/esdcat
@@ -88,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS.bz2 ChangeLog.bz2 NEWS.bz2
+%doc {AUTHORS,ChangeLog,NEWS}.gz
 
 %attr(755,root,root) /usr/lib/lib*.so
 %attr(755,root,root) /usr/bin/esd-config
@@ -97,7 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 /usr/share/aclocal/*
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%defattr(644,root,root,755)
+/usr/lib/lib*.a
 
 %changelog
 * Wed Mar 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
