@@ -11,7 +11,8 @@ Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
-Patch0:		esound-debian.patch
+Patch0:		%{name}-debian.patch
+Patch1:		esound-esddsp.in.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	libwrap-devel
 BuildRequires:	audiofile-devel >= 0.2.0
@@ -42,8 +43,12 @@ Summary(fr):	BibliothХques, includes, etc pour programmer pour EsounD
 Summary(pl):	Biblioteki, pliki nagЁСwkowe oraz dokumentacja
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Requires:	audiofile-devel
 
@@ -68,8 +73,12 @@ Summary:	EsounD static library
 Summary(pl):	Biblioteka statyczna esound
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description static
@@ -81,10 +90,14 @@ Biblioteka statyczna esound.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
+rm -f missing
 libtoolize --copy --force
+aclocal
 autoconf
+automake -a -c
 %configure \
 	--disable-alsa \
 	--with-libwrap
