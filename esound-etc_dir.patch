@@ -7,20 +7,20 @@ diff -Nru esound-0.2.29/esd_config.c esound-0.2.29.new/esd_config.c
    free(fn);
 -
 -  tmpenv = getenv("HOME");
-+  tmpenv = getenv("ETC_DIR");
++  tmpenv = getenv("HOME_ETC");
    if(tmpenv) {
 -    fn = malloc(strlen(tmpenv) + sizeof("/.esd.conf"));
 -    sprintf(fn, "%s/.esd.conf", tmpenv);
 -
-+    fn = malloc(strlen(tmpenv) + sizeof("/esd.conf"));
-+    sprintf(fn, "%s/esd.conf", tmpenv);
-+	} else {
++    fn = malloc(strlen(tmpenv) + sizeof("/.esd.conf"));
++    sprintf(fn, "%s/.esd.conf", tmpenv);
++  } else {
 +  	tmpenv = getenv("HOME");
 +  	if(tmpenv) {
 +    	fn = malloc(strlen(tmpenv) + sizeof("/.esd.conf"));
 +    	sprintf(fn, "%s/.esd.conf", tmpenv);
-+		}
 +	}
++  }
 +  if(tmpenv) {	
      fh = fopen(fn, "r");
  
@@ -32,11 +32,11 @@ diff -Nru esound-0.2.29/esddsp.c esound-0.2.29.new/esddsp.c
  	{
  	  use_mixer = 1;
  
-+		str = getenv ("ETC_DIR");
++		str = getenv ("HOME_ETC");
 +		if (str)
 +			{
-+	      mixer = malloc (strlen (str) + strlen (ident) + 9);
-+	      sprintf (mixer, "%s/esddsp_%s", str, ident);
++	      mixer = malloc (strlen (str) + strlen (ident) + 10);
++	      sprintf (mixer, "%s/.esddsp_%s", str, ident);
 +			}
 +		else {
  	  str = getenv ("HOME");
@@ -66,9 +66,9 @@ diff -Nru esound-0.2.29/esdlib.c esound-0.2.29.new/esdlib.c
      phandler = signal( SIGPIPE, dummy_signal );    /* for closed esd conns */
    
      /* assemble the authorization filename */
-+		etc_dir = getenv("ETC_DIR");
++		etc_dir = getenv("HOME_ETC");
 +		if (etc_dir) {
-+	    namelen = strlen(etc_dir) + sizeof("/esd_auth");
++	    namelen = strlen(etc_dir) + sizeof("/.esd_auth");
 +  	  if ((auth_filename = malloc(namelen + 1)) == 0) {
 +				fprintf( stderr, "Memory exhausted\n" );
 +     		signal( SIGPIPE, phandler ); 
@@ -76,7 +76,7 @@ diff -Nru esound-0.2.29/esdlib.c esound-0.2.29.new/esdlib.c
 +    	}
 +
 +    	strcpy( auth_filename, etc_dir );
-+    	strcat( auth_filename, "/esd_auth" );
++    	strcat( auth_filename, "/.esd_auth" );
 +		} else {
      home = getenv( "HOME" );
      if ( !home ) {
