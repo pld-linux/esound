@@ -15,7 +15,8 @@ Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
-Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/esound/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnome.org/pub/GNOME/2.0/sources/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	58bea6f744613da37a5970e1c18a04f8
 Patch0:		%{name}-am.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 0.2.0
