@@ -17,7 +17,7 @@ License:	GPL
 Group:		Daemons
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/esound/0.2/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am.patch
-Patch1:		%{name}-home_etc.patch
+Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
