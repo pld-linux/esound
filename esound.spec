@@ -1,5 +1,3 @@
-# TODO:
-# add manuals (do proper subpackages)
 #
 # Conditional build:
 # _without_libwrap	- without hosts.{access,deny} support
@@ -12,14 +10,13 @@ Summary(pt_BR):	O servidor de som do Enlightenment
 Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
-Version:	0.2.27
-Release:	0.1
+Version:	0.2.29
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
-Patch0:		%{name}-esddsp.in.patch
-Patch1:		%{name}-am.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/esound/%{name}-%{version}.tar.gz
+Patch0:		%{name}-am.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
@@ -137,11 +134,10 @@ usem o servidor de som EsounD.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 rm -f missing acinclude.m4
-libtoolize --copy --force
+%{__libtoolize}
 aclocal || ( echo 'AC_DEFUN([AM_PATH_ALSA],[])' > acinclude.m4 && aclocal )
 %{__autoconf}
 %{__automake}
@@ -159,8 +155,6 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-gzip -9nf README AUTHORS ChangeLog NEWS
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -169,7 +163,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz
+%doc README
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/esd.conf
 %attr(755,root,root) %{_bindir}/esd
@@ -182,20 +176,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/esdplay
 %attr(755,root,root) %{_bindir}/esdrec
 %attr(755,root,root) %{_bindir}/esdsample
-
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_mandir}/man1/esd.1*
+%{_mandir}/man1/esd[a-z]*.1*
 
 %files devel
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS}.gz
-
+%doc AUTHORS ChangeLog NEWS
+%attr(755,root,root) %{_bindir}/esd-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_bindir}/esd-config
-
 %{_includedir}/*
 %{_aclocaldir}/*
 %{_pkgconfigdir}/esound*
+%{_mandir}/man1/esd-config.1*
 
 %files static
 %defattr(644,root,root,755)
