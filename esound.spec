@@ -5,7 +5,7 @@
 #
 
 %ifarch sparc sparc64
-%bcond_with alsa
+%undefine with_alsa
 %endif
 
 Summary:	The Enlightened Sound Daemon
