@@ -1,5 +1,5 @@
---- esound-0.2.23/esddsp.in.orig	Mon Feb  1 15:38:01 1999
-+++ esound-0.2.23/esddsp.in	Tue Sep 11 01:29:51 2001
+--- esound-0.2.26/esddsp.in.orig	Tue Apr 23 11:26:55 2002
++++ esound-0.2.26/esddsp.in	Thu May  9 08:24:56 2002
 @@ -11,89 +11,92 @@
      case "$1" in
  
@@ -132,20 +132,21 @@
 -    echo "server:        $ESPEAKER"
 -    echo "name:          $ESDDSP_NAME"
 -    echo "command line:  $@"
-+	echo "server:        $ESPEAKER"
-+	echo "name:          $ESDDSP_NAME"
-+	echo "command line:  $@"
++	echo "server:		$ESPEAKER"
++	echo "name:		$ESDDSP_NAME"
++	echo "command line:	$@"
  fi
  
  # setup esd to hijack calls made to /dev/dsp
 -prefix=@prefix@
 -exec_prefix=@exec_prefix@
- libdir=@libdir@
+-libdir=@libdir@
 -
 -export LD_PRELOAD_PATH=${libdir}
--export LD_PRELOAD='libesddsp.so libesd.so'
-+LD_PRELOAD="${libdir}/libesddsp.so.0 ${libdir}/libesd.so.0"
-+export LD_PRELOAD
-
+-export LD_PRELOAD='libesddsp.so.@ESD_MAJOR_VERSION@ libesd.so.@ESD_MAJOR_VERSION@'
++LD_PRELOAD_PATH=${libdir}
++LD_PRELOAD='libesddsp.so.@ESD_MAJOR_VERSION@ libesd.so.@ESD_MAJOR_VERSION@'
++export LD_PRELOAD_PATH LD_PRELOAD
+ 
  # invoke the program with the args given
  exec "$@"

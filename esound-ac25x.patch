@@ -1,12 +1,47 @@
---- esound-0.2.24/configure.in.orig	Fri Mar  1 23:07:05 2002
-+++ esound-0.2.24/configure.in	Thu Apr 25 00:39:56 2002
-@@ -81,8 +81,7 @@
+--- esound-0.2.26/configure.in.orig	Mon May  6 10:27:26 2002
++++ esound-0.2.26/configure.in	Thu May  9 08:43:27 2002
+@@ -44,12 +44,12 @@
  
- dnl check for getopt_long, substitute the distributed versions if not
+ AC_FUNC_ALLOCA
+ AC_CHECK_FUNCS(setenv putenv fchown fchmod gethostbyname2)
+-AC_CHECK_FUNC(connect,,[AC_CHECK_LIB(socket,connect)])
+-AC_CHECK_FUNC(gethostbyname,,[AC_CHECK_LIB(nsl,gethostbyname)])
+-AC_CHECK_FUNC(nanosleep,,[
+-  AC_CHECK_LIB(rt,nanosleep,,[AC_CHECK_LIB(posix4,nanosleep)])])
++AC_CHECK_FUNC(connect,[],[AC_CHECK_LIB(socket,connect)])
++AC_CHECK_FUNC(gethostbyname,[],[AC_CHECK_LIB(nsl,gethostbyname)])
++AC_CHECK_FUNC(nanosleep,[],[
++  AC_CHECK_LIB(rt,nanosleep,[],[AC_CHECK_LIB(posix4,nanosleep)])])
+ AC_CHECK_FUNCS(usleep)
+-AC_CHECK_FUNC(inet_aton,,[AC_CHECK_LIB(resolv,inet_aton)])
++AC_CHECK_FUNC(inet_aton,[],[AC_CHECK_LIB(resolv,inet_aton)])
  
--AC_CHECK_FUNC(getopt_long,,[LIBOBJS="$LIBOBJS getopt.o getopt1.o"])
--AC_SUBST(LIBOBJS)
-+AC_CHECK_FUNC(getopt_long,,[AC_LIBOBJ([getopt]); AC_LIBOBJ([getopt1])])
+ case $ac_cv_func_nanosleep/$ac_cv_lib_rt_nanosleep/$ac_cv_lib_posix4_nanosleep in
+ no/no/no) ;;
+@@ -66,7 +66,7 @@
+ AC_TRY_COMPILE([
+     #include<sys/types.h>
+     #include<netinet/in.h>],
+-    [unsigned long ul = INADDR_LOOPBACK;],,
++    [unsigned long ul = INADDR_LOOPBACK;],[],
+     [AC_DEFINE(INADDR_LOOPBACK, (u_int32_t)0x7f000001)])
+     
  
- dnl Needed for FIONBIO on Solaris at least
- 
+@@ -202,12 +202,12 @@
+    echo "---------------------------------------------------------------------"
+    echo "--- Checking to see which audio libraries are required for linking.";
+    echo "--- Most of these checks should also fail. Do not be alarmed.";
+-   AC_CHECK_FUNC(_oss_ioctl,,[AC_CHECK_LIB(ossaudio,_oss_ioctl)])
+-   AC_CHECK_FUNC(ALnewconfig,,[AC_CHECK_LIB(audio,ALnewconfig)])
++   AC_CHECK_FUNC(_oss_ioctl,[],[AC_CHECK_LIB(ossaudio,_oss_ioctl)])
++   AC_CHECK_FUNC(ALnewconfig,[],[AC_CHECK_LIB(audio,ALnewconfig)])
+    if test "x$enable_alsa" = "xyes"; then
+-      AC_CHECK_FUNC(snd_cards,,[AC_CHECK_LIB(sound,snd_cards)])
+-      AC_CHECK_FUNC(snd_cards,,[AC_CHECK_LIB(asound,snd_cards)])
+-      AC_CHECK_FUNC(snd_pcm_pause,,[AC_CHECK_LIB(asound,snd_pcm_pause)])
++      AC_CHECK_FUNC(snd_cards,[],[AC_CHECK_LIB(sound,snd_cards)])
++      AC_CHECK_FUNC(snd_cards,[],[AC_CHECK_LIB(asound,snd_cards)])
++      AC_CHECK_FUNC(snd_pcm_pause,[],[AC_CHECK_LIB(asound,snd_pcm_pause)])
+    fi
+ else
+    AC_DEFINE(DRIVER_NONE)
