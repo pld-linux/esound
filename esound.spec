@@ -53,7 +53,7 @@ Biblioteka statyczna esound.
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=%{_prefix} \
 	--sysconfdir=/etc
 make
