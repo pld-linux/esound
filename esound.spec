@@ -83,7 +83,7 @@ LDFLAGS="-s"; export LDFLAGS
 	--disable-alsa \
 	--with-libwrap
 
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
