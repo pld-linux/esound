@@ -21,8 +21,9 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.2/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 Patch2:		%{name}-am18.patch
+%{?with_alsa:Patch3:	%{name}-alsa-pcm-newapi.patch }
 URL:		http://www.tux.org/~ricdude/EsounD.html
-%{?with_alsa:BuildRequires:	alsa-lib-devel}
+%{?with_alsa:BuildRequires:	alsa-lib-devel >= 1.0.0-pre1 }
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -175,6 +176,7 @@ Sterownik ALSA dla EsoundD.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
 
 %build
 rm -f missing acinclude.m4
