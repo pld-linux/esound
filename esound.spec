@@ -91,8 +91,8 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Nov  2 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.2.6-1]
 - added -n %%{name} %setup parameter,
-- added ignoring errors on striping binaries,
-- added striping shared libraries,
+- added ignoring errors on stripping binaries,
+- added stripping shared libraries,
 - removed packing lib*.so.* sym links,
 - esd-config moved to devel,
 - some %doc moved to devel,
