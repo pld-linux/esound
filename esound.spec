@@ -1,11 +1,12 @@
 Summary:     The Enlightened Sound Daemon
 Summary(pl): O¶wiecony Demon D¼wiêku ;)
 Name:        esound
-Version:     0.2.6
+Version:     0.2.7
 Release:     1
 Copyright:   GPL
 Group:       Daemons
 Source:      ftp://ftp.enlightenment.org/pub/enlightenment/%{name}-%{version}.tar.gz
+Requires:    libaudiofile = 0.1.5
 URL:         http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRoot:   /tmp/%{name}-%{version}-root
 
@@ -47,15 +48,16 @@ Biblioteka statyczna esound.
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" ./configure \
-	--prefix=/usr/X11R6
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
+	--prefix=/usr
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 make DESTDIR=$RPM_BUILD_ROOT install
-strip $RPM_BUILD_ROOT/usr/X11R6/{bin/*,lib/lib*.so.*.*} ||
+strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -66,28 +68,35 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644, root, root, 755)
 %doc README 
-%attr(755, root, root) /usr/X11R6/bin/esd
-%attr(755, root, root) /usr/X11R6/bin/esdcat
-%attr(755, root, root) /usr/X11R6/bin/esdctl
-%attr(755, root, root) /usr/X11R6/bin/esddsp
-%attr(755, root, root) /usr/X11R6/bin/esdfilt
-%attr(755, root, root) /usr/X11R6/bin/esdloop
-%attr(755, root, root) /usr/X11R6/bin/esdmon
-%attr(755, root, root) /usr/X11R6/bin/esdrec
-%attr(755, root, root) /usr/X11R6/bin/esdsample
-%attr(755, root, root) /usr/X11R6/lib/lib*.so.*.*
+%attr(755, root, root) /usr/bin/esd
+%attr(755, root, root) /usr/bin/esdcat
+%attr(755, root, root) /usr/bin/esdctl
+%attr(755, root, root) /usr/bin/esddsp
+%attr(755, root, root) /usr/bin/esdfilt
+%attr(755, root, root) /usr/bin/esdloop
+%attr(755, root, root) /usr/bin/esdmon
+%attr(755, root, root) /usr/bin/esdrec
+%attr(755, root, root) /usr/bin/esdsample
+%attr(755, root, root) /usr/lib/lib*.so.*.*
 
 %files devel
 %defattr(644, root, root, 755)
 %doc AUTHORS ChangeLog NEWS
-%attr(755, root, root) /usr/X11R6/lib/lib*.so
-%attr(755, root, root) /usr/X11R6/bin/esd-config
-/usr/X11R6/include/*
+%attr(755, root, root) /usr/lib/lib*.so
+%attr(755, root, root) /usr/bin/esd-config
+/usr/include/*
+/usr/share/aclocal/*
 
 %files static
-%attr(644, root, root) /usr/X11R6/lib/*.a
+%attr(644, root, root) /usr/lib/lib*.a
 
 %changelog
+* Tue Jan 05 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.2.7-1]
+- changed prefix to /usr (this is not X11 stuff),
+- added "Requires: libaudiofile = 0.1.5",
+- removed -n %%{name} from %setup.
+
 * Mon Nov  2 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.2.6-1]
 - added -n %%{name} %setup parameter,
