@@ -4,13 +4,14 @@ Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.22
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
+Patch0:		esound-debian.patch
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	libwrap-devel
 BuildRequires:	audiofile-devel
@@ -79,9 +80,11 @@ Biblioteka statyczna esound.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 libtoolize --copy --force
+autoconf
 %configure \
 	--disable-alsa \
 	--with-libwrap
