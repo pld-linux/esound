@@ -1,5 +1,6 @@
 #
 # Conditional build:
+# _without_alsa		- without ALSA support
 # _without_libwrap	- without hosts.{access,deny} support
 #
 Summary:	The Enlightened Sound Daemon
@@ -20,6 +21,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/esound/0.2/%{name}-%{version}.ta
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
+%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -70,6 +72,7 @@ Summary(ru):	Библиотеки разработки для esound
 Summary(uk):	Б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+%{!?_without_alsa:Requires:	alsa-lib-devel}
 Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
 
@@ -141,11 +144,12 @@ usem o servidor de som EsounD.
 %build
 rm -f missing acinclude.m4
 %{__libtoolize}
-%{__aclocal} || ( echo 'AC_DEFUN([AM_PATH_ALSA],[])' > acinclude.m4 && aclocal )
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
-	--with%{?_without_libwrap:out}-libwrap
+	--with%{?_without_libwrap:out}-libwrap \
+	%{?_without_alsa:--disable-alsa}
 
 %{__make}
 
