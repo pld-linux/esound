@@ -10,12 +10,12 @@ Summary(pt_BR):	O servidor de som do Enlightenment
 Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
-Version:	0.2.28
+Version:	0.2.29
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/esound/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 0.2.0
