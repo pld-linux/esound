@@ -12,8 +12,6 @@ Release:	7
 Epoch:		1
 License:	GPL
 Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
 Patch0:		%{name}-esddsp.in.patch
 Patch1:		http://webpages.charter.net/tprado/esound/files/esound-0.2.23-ztp20011218_0.patch.gz
@@ -51,13 +49,6 @@ Summary(es):	Bibliotecas, includes, etc para desarrollar programas para EsounD
 Summary(fr):	BibliothХques, includes, etc pour programmer pour EsounD
 Summary(pl):	Biblioteki, pliki nagЁСwkowe oraz dokumentacja
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
@@ -82,13 +73,6 @@ potrzebujesz do tworzenia aplikacji pod EsounD.
 Summary:	EsounD static library
 Summary(pl):	Biblioteka statyczna esound
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description static
