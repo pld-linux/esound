@@ -8,7 +8,7 @@ Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.23
-Release:	6
+Release:	7
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -22,6 +22,7 @@ BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 %{!?_without_libwrap:BuildRequires:	libwrap-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libesound0
@@ -118,7 +119,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=%{_aclocaldir}
+	m4datadir=%{_aclocaldir} \
+	pkgconfigdir=%{_pkgconfigdir}
 
 gzip -9nf README AUTHORS ChangeLog NEWS
 
@@ -156,6 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_includedir}/*
 %{_aclocaldir}/*
+%{_pkgconfigdir}/esound*
 
 %files static
 %defattr(644,root,root,755)
