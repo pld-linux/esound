@@ -1,3 +1,5 @@
+# TODO:
+# add manuals (do proper subpackages)
 #
 # Conditional build:
 # _without_libwrap	- without hosts.{access,deny} support
@@ -10,13 +12,14 @@ Summary(pt_BR):	O servidor de som do Enlightenment
 Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
-Version:	0.2.26
-Release:	1
+Version:	0.2.27
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Daemons
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
 Patch0:		%{name}-esddsp.in.patch
+Patch1:		%{name}-am.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
@@ -134,6 +137,7 @@ usem o servidor de som EsounD.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing acinclude.m4
