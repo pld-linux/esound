@@ -8,7 +8,7 @@ Summary(fr):	DИmon audio de Enlightment
 Summary(pl):	O╤wiecony Demon D╪wiЙku
 Name:		esound
 Version:	0.2.23
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -23,6 +23,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libesound0
 
 %define		_sysconfdir	/etc
 
@@ -57,6 +58,7 @@ Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Requires:	audiofile-devel
+Obsoletes:	libesound0-devel
 
 %description devel
 Libraries, include files, etc you can use to develop EsounD
