@@ -3,6 +3,11 @@
 %bcond_without alsa 		# support OSS, not ALSA
 %bcond_without libwrap 		# without hosts.{access,deny} support
 #
+
+%ifarch sparc sparc64
+%bcond_with alsa
+%endif
+
 Summary:	The Enlightened Sound Daemon
 Summary(es):	El servidor de sonido del Enlightenment
 Summary(fr):	Démon audio de Enlightment
