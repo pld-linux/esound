@@ -8,6 +8,8 @@ Group:		Daemons
 Group(pl):	Serwery
 Source:		ftp://ftp.gnome.org/pub/NOME/sources/%{name}/%{name}-%{version}.tar.gz
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
+BuildPrereq:	alsa-lib-devel
+BuildPrereq:	audiofile-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -104,10 +106,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/lib/lib*.a
 
 %changelog
-* Tue Apr 13 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+* Sat Apr 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.2.12-1]
+- added BuildPrereq: for alsa-lib-devel, audiofile-devel,
 - added /usr/bin/esdplay to main,
-- added /etc/esd.conf.
+- added /etc/esd.conf,
+- recompiles on new rpm.
 
 * Wed Mar 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.2.8-2]
