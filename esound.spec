@@ -53,7 +53,7 @@ Biblioteka statyczna esound.
 
 %prep
 %setup -q
-%patch -p1
+%patch -p0
 
 %build
 LDFLAGS="-s"; export LDFLAGS
