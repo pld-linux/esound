@@ -22,7 +22,7 @@ Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 %{?with_alsa:BuildRequires:	alsa-lib-devel >= 1.0.0-pre1 }
-BuildRequires:	audiofile-devel >= 0.2.0
+BuildRequires:	audiofile-devel >= 1:0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
