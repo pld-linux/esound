@@ -3,15 +3,15 @@ Summary(es):	Demonio de sonido de Enlightment
 Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
-Version:	0.2.16
+Version:	0.2.17
 Release:	2
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
 Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.tar.gz
-Patch:		esound-alsa.patch
+Patch0:		esound-alsa.patch
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
-BuildRequires:	alsa-devel
+BuildRequires:	libwrap-devel
 BuildRequires:	audiofile-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -31,8 +31,7 @@ plusieures applications d'utilsier la carte son à la fois.
 
 %description -l pl
 "O¶wiecony demon d¼wiêku" jest serwerem, który umo¿liwia korzystanie
-(dzielenie) z jednej karty d¼wiêkowej przez ró¿ne aplikacje. Przeznaczony 
-g³ównie dla Enlightenmenta.
+(dzielenie) z jednej karty d¼wiêkowej przez ró¿ne aplikacje.
 
 %package devel
 Summary:	Libraries, includes, etc to develop EsounD applications
@@ -78,8 +77,11 @@ Biblioteka statyczna esound.
 %patch -p1
 
 %build
+libtoolize --copy --force
 LDFLAGS="-s"; export LDFLAGS
-%configure
+%configure \
+	--disable-alsa \
+	--with-libwrap
 
 make
 
