@@ -56,7 +56,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 
 make DESTDIR=$RPM_BUILD_ROOT install
-strip $RPM_BUILD_ROOT/usr/X11R6/bin/*
+strip $RPM_BUILD_ROOT/usr/X11R6/{bin/*,lib/lib*.so.*.*}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -85,6 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 - /sbin/ldconfig in %post{un} is now runed as -p parameter,
 - changeded dependences to "Requires: %%{name} = %%{version}" in devel
   subpackage,
+- added striping shared libraries,
 - INSTALL and COPYING removed from %doc.
 
 * Mon Jul 20 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
