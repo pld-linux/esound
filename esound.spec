@@ -1,13 +1,8 @@
 #
 # Conditional build:
-%bcond_without alsa 		# support OSS, not ALSA
+%bcond_without alsa 		# don't build ALSA version
 %bcond_without libwrap 		# without hosts.{access,deny} support
 #
-
-%ifarch sparc sparc64
-%undefine with_alsa
-%endif
-
 Summary:	The Enlightened Sound Daemon
 Summary(es):	El servidor de sonido del Enlightenment
 Summary(fr):	DИmon audio de Enlightment
@@ -17,7 +12,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.32
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -70,11 +65,11 @@ EsounD (демон, обслуговуючий звук, з проекту Enlightenment) може
 м╕кширувати к╕лька звукових поток╕в в один пристр╕й в реальному час╕.
 
 %package devel
-Summary:	Libraries, includes, etc to develop EsounD applications
-Summary(es):	Bibliotecas, archivos de inclusiСn, etc para desarrollar aplicaciones EsounD
-Summary(fr):	BibliothХques, includes, etc pour programmer pour EsounD
-Summary(pl):	Biblioteki, pliki nagЁСwkowe oraz dokumentacja
-Summary(pt_BR):	Bibliotecas, arquivos de inclusЦo, etc para desenvolver aplicaГУes EsounD
+Summary:	Header files etc. to develop EsounD applications
+Summary(es):	Archivos de inclusiСn, etc para desarrollar aplicaciones EsounD
+Summary(fr):	Includes, etc pour programmer pour EsounD
+Summary(pl):	Pliki nagЁСwkowe i inne do tworzenia aplikacji z u©yciem EsounD
+Summary(pt_BR):	Arquivos de inclusЦo, etc para desenvolver aplicaГУes EsounD
 Summary(ru):	Библиотеки разработки для esound
 Summary(uk):	Б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
@@ -84,24 +79,23 @@ Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
 
 %description devel
-Libraries, include files, etc you can use to develop EsounD
-applications.
+Header files, etc you can use to develop EsounD applications.
 
 %description devel -l es
-Bibliotecas, archivos de inclusiСn, etc, para que puedas desarrollar
-aplicaciones que usen el servidor de sonido EsounD.
+Archivos de inclusiСn, etc, para que puedas desarrollar aplicaciones
+que usen el servidor de sonido EsounD.
 
 %description devel -l fr
-BibliothХques, fichiers d'en-tЙtes, etc. necessaires pour Иcrire des
-applications avec support EsounD
+Fichiers d'en-tЙtes, etc. necessaires pour Иcrire des applications
+avec support EsounD.
 
 %description devel -l pl
-Biblioteki, pliki nagЁСwkowe oraz dokumentacja - czyli wszystko czego
-potrzebujesz do tworzenia aplikacji pod EsounD.
+Pliki nagЁСwkowe i inne potrzebne do tworzenia aplikacji
+korzystaj╠cych z systemu EsounD.
 
 %description devel -l pt_BR
-Bibliotecas, arquivos de inclusЦo, etc, para que vocЙ possa
-desenvolver aplicaГУes que usem o servidor de som EsounD.
+Arquivos de inclusЦo, etc, para que vocЙ possa desenvolver aplicaГУes
+que usem o servidor de som EsounD.
 
 %description devel -l ru
 Этот пакет включает файлы хедеров и библиотеки, необходимые для
@@ -235,7 +229,7 @@ ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
 
 %files
 %defattr(644,root,root,755)
-%doc README TIPS docs/html
+%doc AUTHORS ChangeLog NEWS README TIPS TODO docs/html
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/esd.conf
 %attr(755,root,root) %{_bindir}/esd
 %attr(755,root,root) %{_bindir}/esdcat
@@ -254,7 +248,6 @@ ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS TODO
 %attr(755,root,root) %{_bindir}/esd-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
