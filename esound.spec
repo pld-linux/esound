@@ -8,7 +8,7 @@ Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.23
-Release:	5
+Release:	6
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -18,11 +18,11 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/esound/%{name}-%{version}.
 Patch0:		%{name}-esddsp.in.patch
 Patch1:		http://webpages.charter.net/tprado/esound/files/esound-0.2.23-ztp20011218_0.patch.gz
 URL:		http://www.tux.org/~ricdude/EsounD.html
-%{!?_without_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	audiofile-devel >= 0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+%{!?_without_libwrap:BuildRequires:	libwrap-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libesound0
 
@@ -104,7 +104,7 @@ Biblioteka statyczna esound.
 %build
 rm -f missing acinclude.m4
 libtoolize --copy --force
-aclocal
+aclocal || ( echo 'AC_DEFUN([AM_PATH_ALSA],[])' > acinclude.m4 && aclocal )
 autoconf
 automake -a -c
 %configure \
