@@ -2,11 +2,12 @@ Summary:	The Enlightened Sound Daemon
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.12
-Release:	3
+Release:	6
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
 Source:		ftp://ftp.gnome.org/pub/NOME/sources/%{name}/%{name}-%{version}.tar.gz
+Patch:		esound-sparc.patch
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
@@ -52,6 +53,7 @@ Biblioteka statyczna esound.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
