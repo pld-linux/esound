@@ -3,12 +3,12 @@ Summary(es):	Demonio de sonido de Enlightment
 Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
-Version:	0.2.15
+Version:	0.2.16
 Release:	1
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
-Source:		ftp://ftp.gnome.org/pub/NOME/sources/%{name}/%{name}-%{version}.tar.gz
+Source:		ftp://ftp.gnome.org/pub/GNOME/sources/esound/%{name}-%{version}.tar.gz
 Patch:		esound-alsa.patch
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRequires:	alsa-devel
