@@ -12,7 +12,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.34
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -21,7 +21,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.2/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
-%{?with_alsa:BuildRequires:	alsa-lib-devel >= 1.0.0-pre1 }
+%{?with_alsa:BuildRequires:	alsa-lib-devel >= 1.0.0-pre1}
 BuildRequires:	audiofile-devel >= 1:0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
