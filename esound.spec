@@ -4,7 +4,7 @@ Summary(fr):	Démon audio de Enlightment
 Summary(pl):	O¶wiecony Demon D¼wiêku
 Name:		esound
 Version:	0.2.17
-Release:	2
+Release:	3
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -42,7 +42,6 @@ Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 Requires:	audiofile-devel
-Requires:	alsa-devel
 
 %description devel
 Libraries, include files, etc you can use to develop EsounD applications.
