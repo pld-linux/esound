@@ -142,7 +142,6 @@ rm -f missing acinclude.m4
 %{__autoconf}
 %{__automake}
 %configure \
-	--disable-alsa \
 	--with%{?_without_libwrap:out}-libwrap
 
 %{__make}
