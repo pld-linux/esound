@@ -78,8 +78,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755, root, root) /usr/X11R6/lib/lib*.so.*.*
 
 %files devel
-%doc AUTHORS ChangeLog NEWS
 %defattr(644, root, root, 755)
+%doc AUTHORS ChangeLog NEWS
 %attr(755, root, root) /usr/X11R6/lib/lib*.so
 %attr(755, root, root) /usr/X11R6/bin/esd-config
 /usr/X11R6/include/*
