@@ -1,8 +1,8 @@
 Summary:	The Enlightened Sound Daemon
-Summary(pl):	O鈍iecony Demon D德i瘯u ;)
+Summary(pl):	O鈍iecony Demon D德i瘯u
 Name:		esound
 Version:	0.2.12
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -17,7 +17,7 @@ The Enlightened Sound Daemon is a server process that allows multiple
 applications to share a single sound card.
 
 %description -l pl
-O鈍iecony demon d德i瘯u ;) jest serwerem, kt鏎y umo磧iwia korzystanie
+"O鈍iecony demon d德i瘯u" jest serwerem, kt鏎y umo磧iwia korzystanie
 (dzielenie) z jednej karty d德i瘯owej przez r騜ne aplikacje. Przeznaczony 
 g堯wnie dla Enlightenmenta.
 
@@ -54,7 +54,7 @@ Biblioteka statyczna esound.
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure %{_target} \
-	--prefix=/usr \
+	--prefix=%{_prefix} \
 	--sysconfdir=/etc
 make
 
@@ -106,50 +106,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.a
 
 %changelog
-* Sat Apr 24 1999 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [0.2.12-1]
-- added BuildPrereq: for alsa-lib-devel, audiofile-devel,
-- added %{_bindir}/esdplay to main,
-- added /etc/esd.conf,
-- recompiles on new rpm.
-
-* Wed Mar 10 1999 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [0.2.8-2]
-- removed "Requires: libaudiofile".
-
-* Sat Feb 27 1999 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [0.2.8-1]
-- changed Group in devel and static to Development/Libraries,
-- fixed Group(pl) in main,
-- changed base Source url.
-
-* Tue Jan 05 1999 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [0.2.7-1d]
-- changed prefix to /usr (this is not X11 stuff),
-- added "Requires: libaudiofile = 0.1.5",
-- removed -n %%{name} from %setup.
-
-* Mon Nov  2 1998 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [0.2.6-1]
-- added -n %%{name} %setup parameter,
-- added ignoring errors on stripping binaries,
-- added stripping shared libraries,
-- removed packing lib*.so.* sym links,
-- esd-config moved to devel,
-- some %doc moved to devel,
-- /sbin/ldconfig is now runed as -p parameter in %post{un}.
-
-* Sun Oct 04 1998 Wojtek 奸usarczyk <wojtek@shadow.eu.org>
-  [0.2.4-3]
-- fixed pl translation,
-- added static subpackage.
-
-* Mon Jul 20 1998 Wojtek 奸usarczyk <wojtek@shadow.eu.org>
-  [0.2.4-2]
-- added pl translation,
-- changed prefix to /usr/X11R6 (for enlightenment location).
-- minor modifications of spec file,
-- build against GNU libc-2.1.
-
-* Wed May 13 1998 Michael Fulbright <msf@redhat.com>
-- First try at an RPM
+* Sat May 29 1999 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
+  [0.2.12-2]
+- based on RH spec,
+- spec rewrited by PLD team,
+- pl translation Wojtek 奸usarczyk <wojtek@shadow.eu.org>.
