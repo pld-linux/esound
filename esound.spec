@@ -73,8 +73,8 @@ Summary(pt_BR):	Arquivos de inclusЦo, etc para desenvolver aplicaГУes EsounD
 Summary(ru):	Библиотеки разработки для esound
 Summary(uk):	Б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
-%{?with_alsa:Requires:	alsa-lib-devel}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+%{?with_alsa:Requires:	alsa-lib-devel >= 1.0.0-pre1}
 Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
 
@@ -113,7 +113,7 @@ Summary(pt_BR):	Bibliotecas estАticas para desenvolver aplicaГУes EsounD
 Summary(ru):	Статические библиотеки разработки для esound
 Summary(uk):	Статичн╕ б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description static
 EsounD static library.
@@ -143,7 +143,7 @@ Summary(pl):	Sterownik OSS dla EsoundD
 Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	%{name}-alsa
 Provides:	%{name}-driver
 
@@ -159,7 +159,7 @@ Summary(pl):	Sterownik ALSA dla EsoundD
 Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	%{name}-oss
 Provides:	%{name}-driver
 
