@@ -29,7 +29,11 @@ BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
 Requires:	esound-driver
+%ifarch amd64 ia64 ppc64 sparc64
+Provides:	libesd.so.0()(64bit)
+%else
 Provides:	libesd.so.0
+%endif
 Obsoletes:	libesound0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -144,8 +148,8 @@ Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Obsoletes:	%{name}-alsa
 Provides:	%{name}-driver
+Obsoletes:	%{name}-alsa
 
 %description oss
 EsounD OSS driver.
@@ -160,9 +164,8 @@ Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Obsoletes:	%{name}-oss
 Provides:	%{name}-driver
-
+Obsoletes:	%{name}-oss
 
 %description alsa
 EsounD ALSA driver.
@@ -176,7 +179,7 @@ Sterownik ALSA dla EsoundD.
 %patch1 -p1
 
 %build
-rm -f missing acinclude.m4
+rm -f acinclude.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
