@@ -2,12 +2,11 @@ Summary:	The Enlightened Sound Daemon
 Summary(pl):	O¶wiecony Demon D¼wiêku ;)
 Name:		esound
 Version:	0.2.8
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
 Source:		ftp://ftp.gnome.org/pub/NOME/sources/%{name}/%{name}-%{version}.tar.gz
-Requires:	libaudiofile = 0.1.5
 URL:		http://pw1.netcom.com/~ericmit/EsounD.html
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -101,6 +100,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/lib/lib*.a
 
 %changelog
+* Wed Mar 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.2.8-2]
+- removed "Requires: libaudiofile".
+
 * Sat Feb 27 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.2.8-1]
 - changed Group in devel and static to Development/Libraries,
