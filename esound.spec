@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_without alsa 		# don't build ALSA version
-%bcond_without libwrap 		# without hosts.{access,deny} support
+%bcond_without	alsa 		# don't build ALSA version
+%bcond_without	libwrap 	# without hosts.{access,deny} support
 #
 Summary:	The Enlightened Sound Daemon
 Summary(es):	El servidor de sonido del Enlightenment
@@ -12,7 +12,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.35
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Daemons
