@@ -28,8 +28,9 @@ BuildRequires:	automake
 BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.213
 Requires:	esound-driver
-%ifarch amd64 ia64 ppc64 sparc64
+%ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libesd.so.0()(64bit)
 %else
 Provides:	libesd.so.0
