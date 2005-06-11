@@ -51,18 +51,17 @@ diff -Nru esound-0.2.29/esddsp.c esound-0.2.29.new/esddsp.c
  	  DPRINTF ("mixer settings file: %s\n", mixer);
  	}
      }
-diff -Nru esound-0.2.29/esdlib.c esound-0.2.29.new/esdlib.c
---- esound-0.2.29/esdlib.c	Mon Jul 15 09:28:26 2002
-+++ esound-0.2.29.new/esdlib.c	Mon Mar 10 13:02:41 2003
-@@ -159,6 +159,7 @@
-     char *auth_filename = 0;
+--- esound-0.2.36/esdlib.c.orig	2005-05-26 02:25:10.000000000 +0200
++++ esound-0.2.36/esdlib.c	2005-06-11 20:40:11.772845792 +0200
+@@ -166,6 +166,7 @@
+     char *auth_filename = NULL;
      unsigned char auth_key[ESD_KEY_LEN];
-     char *home = NULL;
-+		char *etc_dir = NULL;
+     const char *home = NULL;
++    char *etc_dir = NULL;
      int namelen, retval;
      void (*phandler)(int);
    
-@@ -168,6 +169,18 @@
+@@ -175,6 +176,18 @@
      phandler = signal( SIGPIPE, dummy_signal );    /* for closed esd conns */
    
      /* assemble the authorization filename */
@@ -81,7 +80,7 @@ diff -Nru esound-0.2.29/esdlib.c esound-0.2.29.new/esdlib.c
      home = getenv( "HOME" );
      if ( !home ) {
  	fprintf( stderr, "HOME environment variable not set?\n" );
-@@ -184,7 +197,7 @@
+@@ -191,7 +204,7 @@
  
      strcpy( auth_filename, home );
      strcat( auth_filename, "/.esd_auth" );
