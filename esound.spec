@@ -26,6 +26,7 @@ URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 1:0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	docbook-utils
 BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
