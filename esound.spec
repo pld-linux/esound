@@ -12,7 +12,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.36
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -26,12 +26,12 @@ URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	audiofile-devel >= 1:0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-utils
 BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.213
-Requires:	esound-driver
 %ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libesd.so.0()(64bit)
 %else
@@ -70,6 +70,18 @@ EsounD (демон, обслуживающий звук, из проекта Enlightenment) может
 %description -l uk
 EsounD (демон, обслуговуючий звук, з проекту Enlightenment) може
 м╕кширувати к╕лька звукових поток╕в в один пристр╕й в реальному час╕.
+
+%package libs
+Summary:	EsounD libraries
+Summary(pl):	Biblioteki EsounD
+Group:		Libraries
+Requires:	%{name}-driver
+
+%description libs
+EsounD libraries.
+
+%description libs -l pl
+Biblioteki EsounD.
 
 %package devel
 Summary:	Header files etc. to develop EsounD applications
@@ -221,8 +233,8 @@ install libesd-*.so.*.* $RPM_BUILD_ROOT%{_libdir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post libs	-p /sbin/ldconfig
+%postun libs	-p /sbin/ldconfig
 
 %post oss
 ln -fs libesd-oss.so.%{version} %{_libdir}/libesd.so.%{version}
@@ -250,10 +262,13 @@ ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
 %attr(755,root,root) %{_bindir}/esdplay
 %attr(755,root,root) %{_bindir}/esdrec
 %attr(755,root,root) %{_bindir}/esdsample
-%attr(755,root,root) %{_libdir}/libesddsp.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libesd.so.%{version}
 %{_mandir}/man1/esd.1*
 %{_mandir}/man1/esd[a-z]*.1*
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libesddsp.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libesd.so.%{version}
 
 %files devel
 %defattr(644,root,root,755)
