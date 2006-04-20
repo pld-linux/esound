@@ -12,7 +12,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.36
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -32,11 +32,6 @@ BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.213
-%ifarch %{x8664} ia64 ppc64 s390x sparc64
-Provides:	libesd.so.0()(64bit)
-%else
-Provides:	libesd.so.0
-%endif
 Obsoletes:	libesound0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -76,6 +71,11 @@ Summary:	EsounD libraries
 Summary(pl):	Biblioteki EsounD
 Group:		Libraries
 Requires:	%{name}-driver
+%ifarch %{x8664} ia64 ppc64 s390x sparc64
+Provides:	libesd.so.0()(64bit)
+%else
+Provides:	libesd.so.0
+%endif
 
 %description libs
 EsounD libraries.
@@ -92,7 +92,7 @@ Summary(pt_BR):	Arquivos de inclusЦo, etc para desenvolver aplicaГУes EsounD
 Summary(ru):	Библиотеки разработки для esound
 Summary(uk):	Б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 %{?with_alsa:Requires:	alsa-lib-devel >= 1.0.0-pre1}
 Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
@@ -162,7 +162,7 @@ Summary(pl):	Sterownik OSS dla EsoundD
 Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Provides:	%{name}-driver
 Obsoletes:	%{name}-alsa
 
@@ -178,7 +178,7 @@ Summary(pl):	Sterownik ALSA dla EsoundD
 Group:		Libraries
 Requires(post):	/sbin/ldconfig
 Requires(post):	fileutils
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Provides:	%{name}-driver
 Obsoletes:	%{name}-oss
 
