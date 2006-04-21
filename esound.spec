@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_without	alsa 		# don't build ALSA version
 %bcond_without	libwrap 	# without hosts.{access,deny} support
 #
 Summary:	The Enlightened Sound Daemon
@@ -12,7 +11,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.36
-Release:	4
+Release:	5
 Epoch:		1
 License:	GPL
 Group:		Daemons
@@ -22,7 +21,7 @@ Patch0:		%{name}-am.patch
 Patch1:		%{name}-etc_dir.patch
 Patch2:		%{name}-auto_spawn.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
-%{?with_alsa:BuildRequires:	alsa-lib-devel >= 1.0.0}
+BuildRequires:	alsa-lib-devel >= 1.0.0
 BuildRequires:	audiofile-devel >= 1:0.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -32,10 +31,8 @@ BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.213
-Obsoletes:	libesound0
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_noautoprov	libesd.so.0
 
 %description
 The Enlightened Sound Daemon is a server process that allows multiple
@@ -70,12 +67,9 @@ EsounD (демон, обслуговуючий звук, з проекту Enlightenment) може
 Summary:	EsounD libraries
 Summary(pl):	Biblioteki EsounD
 Group:		Libraries
-Requires:	%{name}-driver
-%ifarch %{x8664} ia64 ppc64 s390x sparc64
-Provides:	libesd.so.0()(64bit)
-%else
-Provides:	libesd.so.0
-%endif
+Obsoletes:	esound-alsa
+Obsoletes:	esound-oss
+Obsoletes:	libesound0
 
 %description libs
 EsounD libraries.
@@ -93,7 +87,7 @@ Summary(ru):	Библиотеки разработки для esound
 Summary(uk):	Б╕бл╕отеки розробки для esound
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-%{?with_alsa:Requires:	alsa-lib-devel >= 1.0.0-pre1}
+Requires:	alsa-lib-devel >= 1.0.0-pre1
 Requires:	audiofile-devel
 Obsoletes:	libesound0-devel
 
@@ -156,38 +150,6 @@ usem o servidor de som EsounD.
 Цей пакет м╕стить статичн╕ б╕бл╕отеки, необх╕дн╕ для розробки
 прикладних програм, що використовують esound.
 
-%package oss
-Summary:	EsounD OSS driver
-Summary(pl):	Sterownik OSS dla EsoundD
-Group:		Libraries
-Requires(post):	/sbin/ldconfig
-Requires(post):	fileutils
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Provides:	%{name}-driver
-Obsoletes:	%{name}-alsa
-
-%description oss
-EsounD OSS driver.
-
-%description oss -l pl
-Sterownik OSS dla EsoundD.
-
-%package alsa
-Summary:	EsounD ALSA driver
-Summary(pl):	Sterownik ALSA dla EsoundD
-Group:		Libraries
-Requires(post):	/sbin/ldconfig
-Requires(post):	fileutils
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Provides:	%{name}-driver
-Obsoletes:	%{name}-oss
-
-%description alsa
-EsounD ALSA driver.
-
-%description alsa -l pl
-Sterownik ALSA dla EsoundD.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -200,24 +162,13 @@ Sterownik ALSA dla EsoundD.
 %{__autoconf}
 %{__automake}
 
-%if %{with alsa}
 %configure \
 	--enable-ipv6 \
 	--with%{!?with_libwrap:out}-libwrap \
 	--enable-alsa \
+	--enable-oss \
 	--enable-local-sound
 %{__make}
-cp -f .libs/libesd.so.%{version} libesd-alsa.so.%{version}
-%{__make} clean
-%endif
-
-%configure \
-	--enable-ipv6 \
-	--with%{!?with_libwrap:out}-libwrap \
-	--disable-alsa \
-	--enable-local-sound
-%{__make}
-cp -f .libs/libesd.so.%{version} libesd-oss.so.%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -227,26 +178,11 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-install libesd-*.so.*.* $RPM_BUILD_ROOT%{_libdir}
-> $RPM_BUILD_ROOT%{_libdir}/libesd.so.%{version}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post libs	-p /sbin/ldconfig
+%post	libs	-p /sbin/ldconfig
 %postun libs	-p /sbin/ldconfig
-
-%post oss
-ln -fs libesd-oss.so.%{version} %{_libdir}/libesd.so.%{version}
-/sbin/ldconfig
-
-%postun oss -p /sbin/ldconfig
-
-%post alsa
-ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
-/sbin/ldconfig
-
-%postun alsa -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -267,8 +203,7 @@ ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libesddsp.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libesd.so.%{version}
+%attr(755,root,root) %{_libdir}/libesd*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -283,13 +218,3 @@ ln -fs libesd-alsa.so.%{version} %{_libdir}/libesd.so.%{version}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%files oss
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libesd-oss.so.%{version}
-
-%if %{with alsa}
-%files alsa
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libesd-alsa.so.%{version}
-%endif
