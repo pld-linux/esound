@@ -1,0 +1,2 @@
+- alsa support incorporated into main library, dropped
+  driver packages and alsa bcond, rel.5
