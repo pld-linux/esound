@@ -34,6 +34,7 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+
 %description
 The Enlightened Sound Daemon is a server process that allows multiple
 applications to share a single sound card.
