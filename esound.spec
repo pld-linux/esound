@@ -11,7 +11,7 @@ Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
 Name:		esound
 Version:	0.2.36
-Release:	6
+Release:	7
 Epoch:		1
 License:	GPL
 Group:		Daemons
