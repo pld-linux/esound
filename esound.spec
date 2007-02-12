@@ -3,12 +3,12 @@
 %bcond_without	libwrap 	# without hosts.{access,deny} support
 #
 Summary:	The Enlightened Sound Daemon
-Summary(es):	El servidor de sonido del Enlightenment
-Summary(fr):	DИmon audio de Enlightment
-Summary(pl):	O╤wiecony Demon D╪wiЙku
-Summary(pt_BR):	O servidor de som do Enlightenment
-Summary(ru):	Сервер, позволяющий микшировать вывод на звуковое устройство
-Summary(uk):	Сервер, що дозволя╓ м╕кширувати вив╕д на звуковий пристр╕й
+Summary(es.UTF-8):   El servidor de sonido del Enlightenment
+Summary(fr.UTF-8):   Dц╘mon audio de Enlightment
+Summary(pl.UTF-8):   Oе⌡wiecony Demon Dе╨wiд≥ku
+Summary(pt_BR.UTF-8):   O servidor de som do Enlightenment
+Summary(ru.UTF-8):   п║п╣я─п╡п╣я─, п©п╬п╥п╡п╬п╩я▐я▌я┴п╦п╧ п╪п╦п╨я┬п╦я─п╬п╡п╟я┌я▄ п╡я▀п╡п╬п╢ п╫п╟ п╥п╡я┐п╨п╬п╡п╬п╣ я┐я│я┌я─п╬п╧я│я┌п╡п╬
+Summary(uk.UTF-8):   п║п╣я─п╡п╣я─, я┴п╬ п╢п╬п╥п╡п╬п╩я▐я■ п╪я√п╨я┬п╦я─я┐п╡п╟я┌п╦ п╡п╦п╡я√п╢ п╫п╟ п╥п╡я┐п╨п╬п╡п╦п╧ п©я─п╦я│я┌я─я√п╧
 Name:		esound
 Version:	0.2.36
 Release:	7
@@ -39,34 +39,34 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 The Enlightened Sound Daemon is a server process that allows multiple
 applications to share a single sound card.
 
-%description -l es
-El servidor de sonido esound es en proceso que permite que mЗltiples
+%description -l es.UTF-8
+El servidor de sonido esound es en proceso que permite que mц╨ltiples
 aplicaciones compartan una misma tarjeta de sonido.
 
-%description -l fr
-Le dИmon audio de Enlightment est un processus serveur qui permets Ю
-plusieures applications d'utilsier la carte son Ю la fois.
+%description -l fr.UTF-8
+Le dц╘mon audio de Enlightment est un processus serveur qui permets ц═
+plusieures applications d'utilsier la carte son ц═ la fois.
 
-%description -l pl
-"O╤wiecony demon d╪wiЙku" jest serwerem, ktСry umo©liwia korzystanie
-(dzielenie) z jednej karty d╪wiЙkowej przez rС©ne aplikacje.
+%description -l pl.UTF-8
+"Oе⌡wiecony demon dе╨wiд≥ku" jest serwerem, ktцЁry umoе╪liwia korzystanie
+(dzielenie) z jednej karty dе╨wiд≥kowej przez rцЁе╪ne aplikacje.
 
-%description -l pt_BR
-O servidor de som esound И um processo que permite que mЗltiplas
-aplicaГУes compartilhem uma placa de som.
+%description -l pt_BR.UTF-8
+O servidor de som esound ц╘ um processo que permite que mц╨ltiplas
+aplicaц╖ц╣es compartilhem uma placa de som.
 
-%description -l ru
-EsounD (демон, обслуживающий звук, из проекта Enlightenment) может
-микшировать несколько звуковых потоков в одно устройство в реальном
-времени.
+%description -l ru.UTF-8
+EsounD (п╢п╣п╪п╬п╫, п╬п╠я│п╩я┐п╤п╦п╡п╟я▌я┴п╦п╧ п╥п╡я┐п╨, п╦п╥ п©я─п╬п╣п╨я┌п╟ Enlightenment) п╪п╬п╤п╣я┌
+п╪п╦п╨я┬п╦я─п╬п╡п╟я┌я▄ п╫п╣я│п╨п╬п╩я▄п╨п╬ п╥п╡я┐п╨п╬п╡я▀я┘ п©п╬я┌п╬п╨п╬п╡ п╡ п╬п╢п╫п╬ я┐я│я┌я─п╬п╧я│я┌п╡п╬ п╡ я─п╣п╟п╩я▄п╫п╬п╪
+п╡я─п╣п╪п╣п╫п╦.
 
-%description -l uk
-EsounD (демон, обслуговуючий звук, з проекту Enlightenment) може
-м╕кширувати к╕лька звукових поток╕в в один пристр╕й в реальному час╕.
+%description -l uk.UTF-8
+EsounD (п╢п╣п╪п╬п╫, п╬п╠я│п╩я┐пЁп╬п╡я┐я▌я┤п╦п╧ п╥п╡я┐п╨, п╥ п©я─п╬п╣п╨я┌я┐ Enlightenment) п╪п╬п╤п╣
+п╪я√п╨я┬п╦я─я┐п╡п╟я┌п╦ п╨я√п╩я▄п╨п╟ п╥п╡я┐п╨п╬п╡п╦я┘ п©п╬я┌п╬п╨я√п╡ п╡ п╬п╢п╦п╫ п©я─п╦я│я┌я─я√п╧ п╡ я─п╣п╟п╩я▄п╫п╬п╪я┐ я┤п╟я│я√.
 
 %package libs
 Summary:	EsounD libraries
-Summary(pl):	Biblioteki EsounD
+Summary(pl.UTF-8):   Biblioteki EsounD
 Group:		Libraries
 Obsoletes:	esound-alsa
 Obsoletes:	esound-oss
@@ -75,17 +75,17 @@ Obsoletes:	libesound0
 %description libs
 EsounD libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki EsounD.
 
 %package devel
 Summary:	Header files etc. to develop EsounD applications
-Summary(es):	Archivos de inclusiСn, etc para desarrollar aplicaciones EsounD
-Summary(fr):	Includes, etc pour programmer pour EsounD
-Summary(pl):	Pliki nagЁСwkowe i inne do tworzenia aplikacji z u©yciem EsounD
-Summary(pt_BR):	Arquivos de inclusЦo, etc para desenvolver aplicaГУes EsounD
-Summary(ru):	Библиотеки разработки для esound
-Summary(uk):	Б╕бл╕отеки розробки для esound
+Summary(es.UTF-8):   Archivos de inclusiцЁn, etc para desarrollar aplicaciones EsounD
+Summary(fr.UTF-8):   Includes, etc pour programmer pour EsounD
+Summary(pl.UTF-8):   Pliki nagе┌цЁwkowe i inne do tworzenia aplikacji z uе╪yciem EsounD
+Summary(pt_BR.UTF-8):   Arquivos de inclusцёo, etc para desenvolver aplicaц╖ц╣es EsounD
+Summary(ru.UTF-8):   п▒п╦п╠п╩п╦п╬я┌п╣п╨п╦ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п╢п╩я▐ esound
+Summary(uk.UTF-8):   п▒я√п╠п╩я√п╬я┌п╣п╨п╦ я─п╬п╥я─п╬п╠п╨п╦ п╢п╩я▐ esound
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	alsa-lib-devel >= 1.0.0-pre1
@@ -95,61 +95,61 @@ Obsoletes:	libesound0-devel
 %description devel
 Header files, etc you can use to develop EsounD applications.
 
-%description devel -l es
-Archivos de inclusiСn, etc, para que puedas desarrollar aplicaciones
+%description devel -l es.UTF-8
+Archivos de inclusiцЁn, etc, para que puedas desarrollar aplicaciones
 que usen el servidor de sonido EsounD.
 
-%description devel -l fr
-Fichiers d'en-tЙtes, etc. necessaires pour Иcrire des applications
+%description devel -l fr.UTF-8
+Fichiers d'en-tц╙tes, etc. necessaires pour ц╘crire des applications
 avec support EsounD.
 
-%description devel -l pl
-Pliki nagЁСwkowe i inne potrzebne do tworzenia aplikacji
-korzystaj╠cych z systemu EsounD.
+%description devel -l pl.UTF-8
+Pliki nagе┌цЁwkowe i inne potrzebne do tworzenia aplikacji
+korzystajд┘cych z systemu EsounD.
 
-%description devel -l pt_BR
-Arquivos de inclusЦo, etc, para que vocЙ possa desenvolver aplicaГУes
+%description devel -l pt_BR.UTF-8
+Arquivos de inclusцёo, etc, para que vocц╙ possa desenvolver aplicaц╖ц╣es
 que usem o servidor de som EsounD.
 
-%description devel -l ru
-Этот пакет включает файлы хедеров и библиотеки, необходимые для
-разработки приложений, использующих esound.
+%description devel -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ п╡п╨п╩я▌я┤п╟п╣я┌ я└п╟п╧п╩я▀ я┘п╣п╢п╣я─п╬п╡ п╦ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐
+я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╦п╩п╬п╤п╣п╫п╦п╧, п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦я┘ esound.
 
-%description devel -l uk
-Цей пакет м╕стить .h-файли та б╕бл╕отеки, необх╕дн╕ для розробки
-прикладних програм, що використовують esound.
+%description devel -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ .h-я└п╟п╧п╩п╦ я┌п╟ п╠я√п╠п╩я√п╬я┌п╣п╨п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦
+п©я─п╦п╨п╩п╟п╢п╫п╦я┘ п©я─п╬пЁя─п╟п╪, я┴п╬ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ esound.
 
 %package static
 Summary:	EsounD static library
-Summary(es):	Bibliotecas estАticas para desarrollar aplicaciones EsounD
-Summary(pl):	Biblioteka statyczna esound
-Summary(pt_BR):	Bibliotecas estАticas para desenvolver aplicaГУes EsounD
-Summary(ru):	Статические библиотеки разработки для esound
-Summary(uk):	Статичн╕ б╕бл╕отеки розробки для esound
+Summary(es.UTF-8):   Bibliotecas estц║ticas para desarrollar aplicaciones EsounD
+Summary(pl.UTF-8):   Biblioteka statyczna esound
+Summary(pt_BR.UTF-8):   Bibliotecas estц║ticas para desenvolver aplicaц╖ц╣es EsounD
+Summary(ru.UTF-8):   п║я┌п╟я┌п╦я┤п╣я│п╨п╦п╣ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п╢п╩я▐ esound
+Summary(uk.UTF-8):   п║я┌п╟я┌п╦я┤п╫я√ п╠я√п╠п╩я√п╬я┌п╣п╨п╦ я─п╬п╥я─п╬п╠п╨п╦ п╢п╩я▐ esound
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description static
 EsounD static library.
 
-%description static -l es
-Bibliotecas estАticas para que puedas desarrollar aplicaciones que
+%description static -l es.UTF-8
+Bibliotecas estц║ticas para que puedas desarrollar aplicaciones que
 usen el servidor de sonido EsounD.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteka statyczna esound.
 
-%description static -l pt_BR
-Bibliotecas estАticas para que vocЙ possa desenvolver aplicaГУes que
+%description static -l pt_BR.UTF-8
+Bibliotecas estц║ticas para que vocц╙ possa desenvolver aplicaц╖ц╣es que
 usem o servidor de som EsounD.
 
-%description static -l ru
-Этот пакет включает статические библиотеки, необходимые для разработки
-приложений, использующих esound.
+%description static -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ п╡п╨п╩я▌я┤п╟п╣я┌ я│я┌п╟я┌п╦я┤п╣я│п╨п╦п╣ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦
+п©я─п╦п╩п╬п╤п╣п╫п╦п╧, п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦я┘ esound.
 
-%description static -l uk
-Цей пакет м╕стить статичн╕ б╕бл╕отеки, необх╕дн╕ для розробки
-прикладних програм, що використовують esound.
+%description static -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ я│я┌п╟я┌п╦я┤п╫я√ п╠я√п╠п╩я√п╬я┌п╣п╨п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦
+п©я─п╦п╨п╩п╟п╢п╫п╦я┘ п©я─п╬пЁя─п╟п╪, я┴п╬ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ esound.
 
 %prep
 %setup -q
