@@ -3,12 +3,12 @@
 %bcond_without	libwrap 	# without hosts.{access,deny} support
 #
 Summary:	The Enlightened Sound Daemon
-Summary(es.UTF-8):   El servidor de sonido del Enlightenment
-Summary(fr.UTF-8):   Démon audio de Enlightment
-Summary(pl.UTF-8):   Oświecony Demon Dźwięku
-Summary(pt_BR.UTF-8):   O servidor de som do Enlightenment
-Summary(ru.UTF-8):   Сервер, позволяющий микшировать вывод на звуковое устройство
-Summary(uk.UTF-8):   Сервер, що дозволяє мікширувати вивід на звуковий пристрій
+Summary(es.UTF-8):	El servidor de sonido del Enlightenment
+Summary(fr.UTF-8):	Démon audio de Enlightment
+Summary(pl.UTF-8):	Oświecony Demon Dźwięku
+Summary(pt_BR.UTF-8):	O servidor de som do Enlightenment
+Summary(ru.UTF-8):	Сервер, позволяющий микшировать вывод на звуковое устройство
+Summary(uk.UTF-8):	Сервер, що дозволяє мікширувати вивід на звуковий пристрій
 Name:		esound
 Version:	0.2.36
 Release:	7
@@ -66,7 +66,7 @@ EsounD (демон, обслуговуючий звук, з проекту Enlig
 
 %package libs
 Summary:	EsounD libraries
-Summary(pl.UTF-8):   Biblioteki EsounD
+Summary(pl.UTF-8):	Biblioteki EsounD
 Group:		Libraries
 Obsoletes:	esound-alsa
 Obsoletes:	esound-oss
@@ -80,12 +80,12 @@ Biblioteki EsounD.
 
 %package devel
 Summary:	Header files etc. to develop EsounD applications
-Summary(es.UTF-8):   Archivos de inclusión, etc para desarrollar aplicaciones EsounD
-Summary(fr.UTF-8):   Includes, etc pour programmer pour EsounD
-Summary(pl.UTF-8):   Pliki nagłówkowe i inne do tworzenia aplikacji z użyciem EsounD
-Summary(pt_BR.UTF-8):   Arquivos de inclusão, etc para desenvolver aplicações EsounD
-Summary(ru.UTF-8):   Библиотеки разработки для esound
-Summary(uk.UTF-8):   Бібліотеки розробки для esound
+Summary(es.UTF-8):	Archivos de inclusión, etc para desarrollar aplicaciones EsounD
+Summary(fr.UTF-8):	Includes, etc pour programmer pour EsounD
+Summary(pl.UTF-8):	Pliki nagłówkowe i inne do tworzenia aplikacji z użyciem EsounD
+Summary(pt_BR.UTF-8):	Arquivos de inclusão, etc para desenvolver aplicações EsounD
+Summary(ru.UTF-8):	Библиотеки разработки для esound
+Summary(uk.UTF-8):	Бібліотеки розробки для esound
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	alsa-lib-devel >= 1.0.0-pre1
@@ -121,11 +121,11 @@ que usem o servidor de som EsounD.
 
 %package static
 Summary:	EsounD static library
-Summary(es.UTF-8):   Bibliotecas estáticas para desarrollar aplicaciones EsounD
-Summary(pl.UTF-8):   Biblioteka statyczna esound
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolver aplicações EsounD
-Summary(ru.UTF-8):   Статические библиотеки разработки для esound
-Summary(uk.UTF-8):   Статичні бібліотеки розробки для esound
+Summary(es.UTF-8):	Bibliotecas estáticas para desarrollar aplicaciones EsounD
+Summary(pl.UTF-8):	Biblioteka statyczna esound
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolver aplicações EsounD
+Summary(ru.UTF-8):	Статические библиотеки разработки для esound
+Summary(uk.UTF-8):	Статичні бібліотеки розробки для esound
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
