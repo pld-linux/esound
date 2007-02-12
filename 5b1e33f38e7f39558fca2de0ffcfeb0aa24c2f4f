@@ -1,0 +1,7 @@
+- added using CVS keywords in %changelog (for automating them).
+
+* Sat May 29 1999 Tomasz Kłoczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.2.12-2]
+- based on RH spec,
+- spec rewrited by PLD team,
+- pl translation Wojtek Ślusarczyk <wojtek@shadow.eu.org>.
