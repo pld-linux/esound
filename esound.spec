@@ -10,21 +10,20 @@ Summary(pt_BR.UTF-8):	O servidor de som do Enlightenment
 Summary(ru.UTF-8):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk.UTF-8):	Сервер, що дозволяє мікширувати вивід на звуковий пристрій
 Name:		esound
-Version:	0.2.36
-Release:	7
+Version:	0.2.37
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Daemons
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/esound/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	3facb5aa0115cc1c31771b9ad454ae76
-Patch0:		%{name}-am.patch
-Patch1:		%{name}-etc_dir.patch
-Patch2:		%{name}-auto_spawn.patch
+# Source0-md5:	99cc68770176c8940cf346f60208420e
+Patch0:		%{name}-etc_dir.patch
+Patch1:		%{name}-auto_spawn.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
 BuildRequires:	alsa-lib-devel >= 1.0.0
 BuildRequires:	audiofile-devel >= 1:0.2.0
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.58
+BuildRequires:	automake >= 1:1.6
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-utils
 BuildRequires:	libtool
@@ -88,8 +87,8 @@ Summary(ru.UTF-8):	Библиотеки разработки для esound
 Summary(uk.UTF-8):	Бібліотеки розробки для esound
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	alsa-lib-devel >= 1.0.0-pre1
-Requires:	audiofile-devel
+Requires:	alsa-lib-devel >= 1.0.0
+Requires:	audiofile-devel >= 1:0.2.0
 Obsoletes:	libesound0-devel
 
 %description devel
@@ -154,15 +153,13 @@ usem o servidor de som EsounD.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p0
+%patch1 -p0
 
 %build
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
-
 %configure \
 	--enable-ipv6 \
 	--with%{!?with_libwrap:out}-libwrap \
@@ -178,6 +175,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
+
+rm -rf $RPM_BUILD_ROOT%{_docdir}/esound/html
 
 %clean
 rm -rf $RPM_BUILD_ROOT
