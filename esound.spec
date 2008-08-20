@@ -10,13 +10,13 @@ Summary(pt_BR.UTF-8):	O servidor de som do Enlightenment
 Summary(ru.UTF-8):	Сервер, позволяющий микшировать вывод на звуковое устройство
 Summary(uk.UTF-8):	Сервер, що дозволяє мікширувати вивід на звуковий пристрій
 Name:		esound
-Version:	0.2.38
+Version:	0.2.39
 Release:	1
 Epoch:		1
-License:	GPL
+License:	LGPL v2+
 Group:		Daemons
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/esound/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	1c48c100b450d617b58dacb59837d34f
+# Source0-md5:	d950b9cd0d7b5406cc4bb16bcdcea8f4
 Patch0:		%{name}-etc_dir.patch
 Patch1:		%{name}-auto_spawn.patch
 URL:		http://www.tux.org/~ricdude/EsounD.html
@@ -176,13 +176,13 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-rm -rf $RPM_BUILD_ROOT%{_docdir}/esound/html
+rm -rf $RPM_BUILD_ROOT%{_docdir}/esound
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	libs	-p /sbin/ldconfig
-%postun libs	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -203,18 +203,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libesd*.so.*.*
+%attr(755,root,root) %{_libdir}/libesd.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libesd.so.0
+%attr(755,root,root) %{_libdir}/libesddsp.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libesddsp.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/esd-config
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*
-%{_aclocaldir}/*
-%{_pkgconfigdir}/esound*
+%attr(755,root,root) %{_libdir}/libesd.so
+%attr(755,root,root) %{_libdir}/libesddsp.so
+%{_libdir}/libesd.la
+%{_libdir}/libesddsp.la
+%{_includedir}/esd.h
+%{_aclocaldir}/esd.m4
+%{_pkgconfigdir}/esound.pc
 %{_mandir}/man1/esd-config.1*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libesd.a
+%{_libdir}/libesddsp.a
