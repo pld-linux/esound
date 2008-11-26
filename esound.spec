@@ -26,6 +26,7 @@ BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.6
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-utils
+BuildRequires:	gnome-doc-tools
 BuildRequires:	libtool
 %{?with_libwrap:BuildRequires:	libwrap-devel}
 BuildRequires:	pkgconfig
