@@ -1,8 +1,0 @@
---- esd.conf
-+++ esd.conf
-@@ -3,4 +3,4 @@
- spawn_options=-terminate -nobeeps -as 2
- spawn_wait_ms=100
- # default options are used in spawned and non-spawned mode
--default_options=
-+default_options=-as 2
